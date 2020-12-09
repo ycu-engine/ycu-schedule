@@ -1,0 +1,21 @@
+version: 1
+applications:
+  - frontend:
+    appRoot: web
+      phase:
+        preBuild:
+          commands:
+            - yarn install
+        build:
+          commands:
+            - yarn build
+        postBuild:
+          commands:
+            - yarn export
+    artifacts:
+        baseDirectory: out
+        files:
+            - '**/*'
+    cache:
+        paths:
+            - node_modules/**/*
