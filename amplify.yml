@@ -2,7 +2,7 @@ version: 1
 applications:
   - appRoot: web
     frontend:
-      phase:
+      phases:
         preBuild:
           commands:
             - yarn install
