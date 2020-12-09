@@ -1,7 +1,7 @@
 version: 1
 applications:
-  - frontend:
-    appRoot: web
+  - appRoot: web
+    frontend:
       phase:
         preBuild:
           commands:
@@ -12,10 +12,10 @@ applications:
         postBuild:
           commands:
             - yarn export
-    artifacts:
+      artifacts:
         baseDirectory: out
         files:
-            - '**/*'
-    cache:
+          - '**/*'
+      cache:
         paths:
-            - node_modules/**/*
+          - node_modules/**/*
