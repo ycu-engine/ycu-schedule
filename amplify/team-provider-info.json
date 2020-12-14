@@ -10,6 +10,11 @@
       "StackName": "amplify-ycu-schedule-dev-200835",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:676559170363:stack/amplify-ycu-schedule-dev-200835/52181630-3a5a-11eb-9134-06aa9b7dfc56",
       "AmplifyAppId": "d26urztjxkulo9"
+    },
+    "categories": {
+      "auth": {
+        "ycuschedule": {}
+      }
     }
   }
 }

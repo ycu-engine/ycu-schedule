@@ -1,23 +1,41 @@
 {
   "name": "with-typescript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "postinstall": "typesync || :",
     "type-check": "tsc"
   },
   "dependencies": {
+    "@ycu-engine/amplify-api-hook": "^0.0.3",
+    "@ycu-engine/amplify-auth-hook": "^0.2.5",
+    "amazon-cognito-identity-js": "^4.5.5",
+    "aws-amplify": "^3.3.11",
+    "aws-amplify-react": "^4.2.15",
+    "date-fns": "^2.16.1",
+    "github-markdown-css": "^4.0.0",
     "next": "latest",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^16.12.0",
+    "react-hook-form": "^6.12.2",
+    "react-markdown": "^5.0.3",
+    "recoil": "^0.1.2",
+    "remark-gfm": "^1.0.0",
+    "sass": "^1.30.0"
   },
   "devDependencies": {
+    "@hookform/devtools": "^2.2.1",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
+    "@types/react-datepicker": "^3.1.2",
     "@types/react-dom": "^16.9.4",
-    "typescript": "4.0"
+    "@types/sass": "^1.16.0",
+    "typescript": "4.0",
+    "typesync": "^0.8.0"
   },
   "license": "MIT"
 }

@@ -1,0 +1,17 @@
+.simple-table {
+  width: 100%;
+
+  &-td,
+  &-th {
+    margin: 0 2em;
+  }
+
+  &-td {
+    > {
+      max-width: 95%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

@@ -1,6 +1,43 @@
+import { useMounted } from '@/lib/life-cycle'
+import { useAuth } from '@/store/user'
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { ReactNode } from 'react'
+import { useRouter } from 'next/router'
+import React, { FC, ReactNode } from 'react'
+import { Card } from './Card'
+import { Paragraph } from './Typography'
+
+export const StaffOnly: FC = ({ children }) => {
+  const { isLoading, isStaff, initialized } = useAuth()
+  const router = useRouter()
+  const isMounted = useMounted()
+
+  if (!isMounted) {
+    return (
+      <Card>
+        <Paragraph>Wait...</Paragraph>
+      </Card>
+    )
+  }
+  if (!initialized) {
+    return (
+      <Card>
+        <Paragraph>初期化中...</Paragraph>
+      </Card>
+    )
+  }
+  if (isLoading) {
+    return (
+      <Card>
+        <Paragraph>読み込み中...</Paragraph>
+      </Card>
+    )
+  }
+  if (!isStaff) {
+    router.push({ pathname: '/signin', query: { next: router.asPath } })
+  }
+  return <>{children}</>
+}
 
 type Props = {
   children?: ReactNode

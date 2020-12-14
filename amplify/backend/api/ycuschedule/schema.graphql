@@ -1,0 +1,13 @@
+type News
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["staff"], operations: [create, update, delete] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  content: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}

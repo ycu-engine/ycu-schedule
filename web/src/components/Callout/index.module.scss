@@ -1,0 +1,31 @@
+@import '@/styles/_color';
+@import '@/styles/_breakpoint';
+
+.callout {
+  align-items: center;
+  background-color: $main-color;
+  display: flex;
+  padding: 20px 0;
+  justify-content: center;
+  width: 100vw;
+
+  &__inner {
+    color: $base-color;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.7;
+    text-align: center;
+    width: 980px;
+
+    @include tablet() {
+      width: calc(100vw - 80px);
+    }
+
+    @include mobile() {
+      font-size: 14px;
+      padding: 0;
+      text-align: left;
+      width: calc(100vw - 60px);
+    }
+  }
+}
