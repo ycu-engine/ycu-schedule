@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang='ja'>
         <Head>
-          <meta />
+          <meta charSet='utf-8' />
         </Head>
         <body>
           <Main />
