@@ -31,9 +31,9 @@ export const listNewss = /* GraphQL */ `
     }
   }
 `;
-export const getProfile = /* GraphQL */ `
-  query GetProfile($owner: String!) {
-    getProfile(owner: $owner) {
+export const getStudentProfile = /* GraphQL */ `
+  query GetStudentProfile($owner: String!) {
+    getStudentProfile(owner: $owner) {
       owner
       weeks
       periods
@@ -42,15 +42,15 @@ export const getProfile = /* GraphQL */ `
     }
   }
 `;
-export const listProfiles = /* GraphQL */ `
-  query ListProfiles(
+export const listStudentProfiles = /* GraphQL */ `
+  query ListStudentProfiles(
     $owner: String
-    $filter: ModelProfileFilterInput
+    $filter: ModelStudentProfileFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
-    listProfiles(
+    listStudentProfiles(
       owner: $owner
       filter: $filter
       limit: $limit

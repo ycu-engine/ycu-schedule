@@ -1,7 +1,7 @@
 import { SimpleButton } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { NewsForm } from '@/components/forms/News'
-import { StaffOnly } from '@/components/Layout'
+import { StaffOnlyComponent } from '@/components/Layout'
 import { Modal } from '@/components/Modal'
 import { SimpleTable } from '@/components/Table'
 import { Heading1, Paragraph } from '@/components/Typography'
@@ -17,7 +17,7 @@ const StaffNewsPage = () => {
   }, [])
 
   return (
-    <StaffOnly>
+    <StaffOnlyComponent>
       <Card>
         <Heading1>🗞 お知らせ管理</Heading1>
 
@@ -64,7 +64,7 @@ const StaffNewsPage = () => {
           <NewsForm />
         </Modal>
       </Card>
-    </StaffOnly>
+    </StaffOnlyComponent>
   )
 }
 

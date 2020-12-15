@@ -12,7 +12,7 @@ type News
   updatedAt: AWSDateTime!
 }
 
-type Profile
+type StudentProfile
   @model
   @key(fields: ["owner"])
   @auth(rules: [{ allow: owner, operations: [read, create, update] }]) {

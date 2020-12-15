@@ -11,6 +11,7 @@ import {
 import { Markdown } from '@/lib/markdown'
 import { siteTitle } from '@/lib/site-title'
 import { useNews } from '@/store/news'
+import { useAuth } from '@/store/user'
 import { format } from 'date-fns'
 import Head from 'next/head'
 import NextLink from 'next/link'
@@ -18,9 +19,18 @@ import { useEffect } from 'react'
 
 const IndexPage = () => {
   const { latestNews, fetch } = useNews()
+  const { signOut, memberOfClubs, isStaff, isStudent } = useAuth()
   useEffect(() => {
     fetch()
   }, [])
+
+  useEffect(() => {
+    console.dir({
+      memberOfClubs,
+      isStaff,
+      isStudent
+    })
+  }, [memberOfClubs, isStaff, isStudent])
 
   return (
     <>
@@ -64,6 +74,13 @@ const IndexPage = () => {
           </Paragraph>
         </Card>
       ) : null}
+      {process.env.NODE_ENV === 'development' ? (
+        <Card>
+          <Heading1>Singout</Heading1>
+          <button onClick={signOut}>signout</button>
+        </Card>
+      ) : null}
+
       <Card>
         <Heading1>🗓 今後の機能追加予定</Heading1>
         <Paragraph>

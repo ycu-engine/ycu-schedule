@@ -35,9 +35,9 @@ export const onDeleteNews = /* GraphQL */ `
     }
   }
 `;
-export const onCreateProfile = /* GraphQL */ `
-  subscription OnCreateProfile($owner: String!) {
-    onCreateProfile(owner: $owner) {
+export const onCreateStudentProfile = /* GraphQL */ `
+  subscription OnCreateStudentProfile($owner: String!) {
+    onCreateStudentProfile(owner: $owner) {
       owner
       weeks
       periods
@@ -46,9 +46,9 @@ export const onCreateProfile = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateProfile = /* GraphQL */ `
-  subscription OnUpdateProfile($owner: String!) {
-    onUpdateProfile(owner: $owner) {
+export const onUpdateStudentProfile = /* GraphQL */ `
+  subscription OnUpdateStudentProfile($owner: String!) {
+    onUpdateStudentProfile(owner: $owner) {
       owner
       weeks
       periods
@@ -57,9 +57,9 @@ export const onUpdateProfile = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteProfile = /* GraphQL */ `
-  subscription OnDeleteProfile($owner: String!) {
-    onDeleteProfile(owner: $owner) {
+export const onDeleteStudentProfile = /* GraphQL */ `
+  subscription OnDeleteStudentProfile($owner: String!) {
+    onDeleteStudentProfile(owner: $owner) {
       owner
       weeks
       periods

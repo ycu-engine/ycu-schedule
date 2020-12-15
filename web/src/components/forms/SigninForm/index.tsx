@@ -1,7 +1,7 @@
 import { AlertMessageItem, AlertMessages } from '@/components/AlertMessage'
 import { useAuth } from '@/store/user'
-import { DevTool } from '@hookform/devtools'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { FormInput } from '../fields'
 import { getError } from '../fields/error'
@@ -17,12 +17,16 @@ type SigninFormProps = {
 
 export const SigninForm = ({ id }: SigninFormProps) => {
   const { error, signIn, isAuthenticated } = useAuth()
-  const { register, control, errors, handleSubmit } = useForm<SigninFormType>()
+  const { register, errors, handleSubmit } = useForm<SigninFormType>()
   const router = useRouter()
+
+  console.log(error)
 
   const nonFieldError: string = !!error
     ? error.code === 'UserNotFoundException'
       ? 'ユーザーが存在しませんでした。'
+      : error.code === 'NotAuthorizedException'
+      ? 'Emailまたはパスワードが間違っています。'
       : error.message
     : ''
 
@@ -33,9 +37,11 @@ export const SigninForm = ({ id }: SigninFormProps) => {
     })
   }
 
-  if (isAuthenticated) {
-    router.push('/about')
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push(String(router.query.next || '/'))
+    }
+  }, [isAuthenticated, router.query])
 
   return (
     <>
@@ -66,9 +72,6 @@ export const SigninForm = ({ id }: SigninFormProps) => {
           error={getError(errors.password)}
         />
       </form>
-      {process.env.NODE_ENV === 'development' ? (
-        <DevTool control={control} />
-      ) : null}
     </>
   )
 }

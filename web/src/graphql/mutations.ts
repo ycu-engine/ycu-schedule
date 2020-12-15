@@ -44,12 +44,12 @@ export const deleteNews = /* GraphQL */ `
     }
   }
 `;
-export const createProfile = /* GraphQL */ `
-  mutation CreateProfile(
-    $input: CreateProfileInput!
-    $condition: ModelProfileConditionInput
+export const createStudentProfile = /* GraphQL */ `
+  mutation CreateStudentProfile(
+    $input: CreateStudentProfileInput!
+    $condition: ModelStudentProfileConditionInput
   ) {
-    createProfile(input: $input, condition: $condition) {
+    createStudentProfile(input: $input, condition: $condition) {
       owner
       weeks
       periods
@@ -58,12 +58,12 @@ export const createProfile = /* GraphQL */ `
     }
   }
 `;
-export const updateProfile = /* GraphQL */ `
-  mutation UpdateProfile(
-    $input: UpdateProfileInput!
-    $condition: ModelProfileConditionInput
+export const updateStudentProfile = /* GraphQL */ `
+  mutation UpdateStudentProfile(
+    $input: UpdateStudentProfileInput!
+    $condition: ModelStudentProfileConditionInput
   ) {
-    updateProfile(input: $input, condition: $condition) {
+    updateStudentProfile(input: $input, condition: $condition) {
       owner
       weeks
       periods
@@ -72,12 +72,12 @@ export const updateProfile = /* GraphQL */ `
     }
   }
 `;
-export const deleteProfile = /* GraphQL */ `
-  mutation DeleteProfile(
-    $input: DeleteProfileInput!
-    $condition: ModelProfileConditionInput
+export const deleteStudentProfile = /* GraphQL */ `
+  mutation DeleteStudentProfile(
+    $input: DeleteStudentProfileInput!
+    $condition: ModelStudentProfileConditionInput
   ) {
-    deleteProfile(input: $input, condition: $condition) {
+    deleteStudentProfile(input: $input, condition: $condition) {
       owner
       weeks
       periods

@@ -72,18 +72,18 @@ export type DeleteNewsInput = {
   id?: string | null,
 };
 
-export type CreateProfileInput = {
+export type CreateStudentProfileInput = {
   owner: string,
   weeks: Array< number | null >,
   periods: Array< number | null >,
 };
 
-export type ModelProfileConditionInput = {
+export type ModelStudentProfileConditionInput = {
   weeks?: ModelIntInput | null,
   periods?: ModelIntInput | null,
-  and?: Array< ModelProfileConditionInput | null > | null,
-  or?: Array< ModelProfileConditionInput | null > | null,
-  not?: ModelProfileConditionInput | null,
+  and?: Array< ModelStudentProfileConditionInput | null > | null,
+  or?: Array< ModelStudentProfileConditionInput | null > | null,
+  not?: ModelStudentProfileConditionInput | null,
 };
 
 export type ModelIntInput = {
@@ -98,13 +98,13 @@ export type ModelIntInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
-export type UpdateProfileInput = {
+export type UpdateStudentProfileInput = {
   owner: string,
   weeks?: Array< number | null > | null,
   periods?: Array< number | null > | null,
 };
 
-export type DeleteProfileInput = {
+export type DeleteStudentProfileInput = {
   owner: string,
 };
 
@@ -135,13 +135,13 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelProfileFilterInput = {
+export type ModelStudentProfileFilterInput = {
   owner?: ModelStringInput | null,
   weeks?: ModelIntInput | null,
   periods?: ModelIntInput | null,
-  and?: Array< ModelProfileFilterInput | null > | null,
-  or?: Array< ModelProfileFilterInput | null > | null,
-  not?: ModelProfileFilterInput | null,
+  and?: Array< ModelStudentProfileFilterInput | null > | null,
+  or?: Array< ModelStudentProfileFilterInput | null > | null,
+  not?: ModelStudentProfileFilterInput | null,
 };
 
 export enum ModelSortDirection {
@@ -198,14 +198,14 @@ export type DeleteNewsMutation = {
   } | null,
 };
 
-export type CreateProfileMutationVariables = {
-  input: CreateProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type CreateStudentProfileMutationVariables = {
+  input: CreateStudentProfileInput,
+  condition?: ModelStudentProfileConditionInput | null,
 };
 
-export type CreateProfileMutation = {
-  createProfile:  {
-    __typename: "Profile",
+export type CreateStudentProfileMutation = {
+  createStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -214,14 +214,14 @@ export type CreateProfileMutation = {
   } | null,
 };
 
-export type UpdateProfileMutationVariables = {
-  input: UpdateProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type UpdateStudentProfileMutationVariables = {
+  input: UpdateStudentProfileInput,
+  condition?: ModelStudentProfileConditionInput | null,
 };
 
-export type UpdateProfileMutation = {
-  updateProfile:  {
-    __typename: "Profile",
+export type UpdateStudentProfileMutation = {
+  updateStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -230,14 +230,14 @@ export type UpdateProfileMutation = {
   } | null,
 };
 
-export type DeleteProfileMutationVariables = {
-  input: DeleteProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type DeleteStudentProfileMutationVariables = {
+  input: DeleteStudentProfileInput,
+  condition?: ModelStudentProfileConditionInput | null,
 };
 
-export type DeleteProfileMutation = {
-  deleteProfile:  {
-    __typename: "Profile",
+export type DeleteStudentProfileMutation = {
+  deleteStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -282,13 +282,13 @@ export type ListNewssQuery = {
   } | null,
 };
 
-export type GetProfileQueryVariables = {
+export type GetStudentProfileQueryVariables = {
   owner: string,
 };
 
-export type GetProfileQuery = {
-  getProfile:  {
-    __typename: "Profile",
+export type GetStudentProfileQuery = {
+  getStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -297,19 +297,19 @@ export type GetProfileQuery = {
   } | null,
 };
 
-export type ListProfilesQueryVariables = {
+export type ListStudentProfilesQueryVariables = {
   owner?: string | null,
-  filter?: ModelProfileFilterInput | null,
+  filter?: ModelStudentProfileFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   sortDirection?: ModelSortDirection | null,
 };
 
-export type ListProfilesQuery = {
-  listProfiles:  {
-    __typename: "ModelProfileConnection",
+export type ListStudentProfilesQuery = {
+  listStudentProfiles:  {
+    __typename: "ModelStudentProfileConnection",
     items:  Array< {
-      __typename: "Profile",
+      __typename: "StudentProfile",
       owner: string,
       weeks: Array< number | null >,
       periods: Array< number | null >,
@@ -353,13 +353,13 @@ export type OnDeleteNewsSubscription = {
   } | null,
 };
 
-export type OnCreateProfileSubscriptionVariables = {
+export type OnCreateStudentProfileSubscriptionVariables = {
   owner: string,
 };
 
-export type OnCreateProfileSubscription = {
-  onCreateProfile:  {
-    __typename: "Profile",
+export type OnCreateStudentProfileSubscription = {
+  onCreateStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -368,13 +368,13 @@ export type OnCreateProfileSubscription = {
   } | null,
 };
 
-export type OnUpdateProfileSubscriptionVariables = {
+export type OnUpdateStudentProfileSubscriptionVariables = {
   owner: string,
 };
 
-export type OnUpdateProfileSubscription = {
-  onUpdateProfile:  {
-    __typename: "Profile",
+export type OnUpdateStudentProfileSubscription = {
+  onUpdateStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
@@ -383,13 +383,13 @@ export type OnUpdateProfileSubscription = {
   } | null,
 };
 
-export type OnDeleteProfileSubscriptionVariables = {
+export type OnDeleteStudentProfileSubscriptionVariables = {
   owner: string,
 };
 
-export type OnDeleteProfileSubscription = {
-  onDeleteProfile:  {
-    __typename: "Profile",
+export type OnDeleteStudentProfileSubscription = {
+  onDeleteStudentProfile:  {
+    __typename: "StudentProfile",
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
