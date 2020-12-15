@@ -11,3 +11,12 @@ type News
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
+
+type Profile
+  @model
+  @key(fields: ["owner"])
+  @auth(rules: [{ allow: owner, operations: [read, create, update] }]) {
+  owner: String!
+  weeks: [Int]!
+  periods: [Int]!
+}

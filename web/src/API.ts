@@ -72,6 +72,42 @@ export type DeleteNewsInput = {
   id?: string | null,
 };
 
+export type CreateProfileInput = {
+  owner: string,
+  weeks: Array< number | null >,
+  periods: Array< number | null >,
+};
+
+export type ModelProfileConditionInput = {
+  weeks?: ModelIntInput | null,
+  periods?: ModelIntInput | null,
+  and?: Array< ModelProfileConditionInput | null > | null,
+  or?: Array< ModelProfileConditionInput | null > | null,
+  not?: ModelProfileConditionInput | null,
+};
+
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type UpdateProfileInput = {
+  owner: string,
+  weeks?: Array< number | null > | null,
+  periods?: Array< number | null > | null,
+};
+
+export type DeleteProfileInput = {
+  owner: string,
+};
+
 export type ModelNewsFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -98,6 +134,21 @@ export type ModelIDInput = {
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
 };
+
+export type ModelProfileFilterInput = {
+  owner?: ModelStringInput | null,
+  weeks?: ModelIntInput | null,
+  periods?: ModelIntInput | null,
+  and?: Array< ModelProfileFilterInput | null > | null,
+  or?: Array< ModelProfileFilterInput | null > | null,
+  not?: ModelProfileFilterInput | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
 
 export type CreateNewsMutationVariables = {
   input: CreateNewsInput,
@@ -147,6 +198,54 @@ export type DeleteNewsMutation = {
   } | null,
 };
 
+export type CreateProfileMutationVariables = {
+  input: CreateProfileInput,
+  condition?: ModelProfileConditionInput | null,
+};
+
+export type CreateProfileMutation = {
+  createProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateProfileMutationVariables = {
+  input: UpdateProfileInput,
+  condition?: ModelProfileConditionInput | null,
+};
+
+export type UpdateProfileMutation = {
+  updateProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteProfileMutationVariables = {
+  input: DeleteProfileInput,
+  condition?: ModelProfileConditionInput | null,
+};
+
+export type DeleteProfileMutation = {
+  deleteProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetNewsQueryVariables = {
   id: string,
 };
@@ -183,6 +282,44 @@ export type ListNewssQuery = {
   } | null,
 };
 
+export type GetProfileQueryVariables = {
+  owner: string,
+};
+
+export type GetProfileQuery = {
+  getProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListProfilesQueryVariables = {
+  owner?: string | null,
+  filter?: ModelProfileFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
+};
+
+export type ListProfilesQuery = {
+  listProfiles:  {
+    __typename: "ModelProfileConnection",
+    items:  Array< {
+      __typename: "Profile",
+      owner: string,
+      weeks: Array< number | null >,
+      periods: Array< number | null >,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type OnCreateNewsSubscription = {
   onCreateNews:  {
     __typename: "News",
@@ -211,6 +348,51 @@ export type OnDeleteNewsSubscription = {
     id: string,
     title: string,
     content: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateProfileSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnCreateProfileSubscription = {
+  onCreateProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateProfileSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnUpdateProfileSubscription = {
+  onUpdateProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteProfileSubscriptionVariables = {
+  owner: string,
+};
+
+export type OnDeleteProfileSubscription = {
+  onDeleteProfile:  {
+    __typename: "Profile",
+    owner: string,
+    weeks: Array< number | null >,
+    periods: Array< number | null >,
     createdAt: string,
     updatedAt: string,
   } | null,

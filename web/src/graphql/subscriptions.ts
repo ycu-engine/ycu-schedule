@@ -35,3 +35,36 @@ export const onDeleteNews = /* GraphQL */ `
     }
   }
 `;
+export const onCreateProfile = /* GraphQL */ `
+  subscription OnCreateProfile($owner: String!) {
+    onCreateProfile(owner: $owner) {
+      owner
+      weeks
+      periods
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateProfile = /* GraphQL */ `
+  subscription OnUpdateProfile($owner: String!) {
+    onUpdateProfile(owner: $owner) {
+      owner
+      weeks
+      periods
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteProfile = /* GraphQL */ `
+  subscription OnDeleteProfile($owner: String!) {
+    onDeleteProfile(owner: $owner) {
+      owner
+      weeks
+      periods
+      createdAt
+      updatedAt
+    }
+  }
+`;

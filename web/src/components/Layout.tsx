@@ -35,6 +35,7 @@ export const StaffOnly: FC = ({ children }) => {
   }
   if (!isStaff) {
     router.push({ pathname: '/signin', query: { next: router.asPath } })
+    return null
   }
   return <>{children}</>
 }

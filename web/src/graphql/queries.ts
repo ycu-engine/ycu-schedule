@@ -31,3 +31,40 @@ export const listNewss = /* GraphQL */ `
     }
   }
 `;
+export const getProfile = /* GraphQL */ `
+  query GetProfile($owner: String!) {
+    getProfile(owner: $owner) {
+      owner
+      weeks
+      periods
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listProfiles = /* GraphQL */ `
+  query ListProfiles(
+    $owner: String
+    $filter: ModelProfileFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listProfiles(
+      owner: $owner
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        owner
+        weeks
+        periods
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
