@@ -19,18 +19,10 @@ import { useEffect } from 'react'
 
 const IndexPage = () => {
   const { latestNews, fetch } = useNews()
-  const { signOut, memberOfClubs, isStaff, isStudent } = useAuth()
+  const { signOut } = useAuth()
   useEffect(() => {
     fetch()
   }, [])
-
-  useEffect(() => {
-    console.dir({
-      memberOfClubs,
-      isStaff,
-      isStudent
-    })
-  }, [memberOfClubs, isStaff, isStudent])
 
   return (
     <>

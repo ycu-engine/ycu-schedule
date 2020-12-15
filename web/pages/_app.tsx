@@ -2,6 +2,7 @@ import { Alerts } from '@/components/Alert'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { DebugObserver } from '@/lib/recoil-devtool'
 import '@/styles/global.scss'
 import '@/styles/reset.css'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
@@ -22,6 +23,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </Container>
         <Footer />
+        <DebugObserver />
       </RecoilRoot>
     </>
   )

@@ -8,9 +8,10 @@ import {
 import { configure } from '@/aws-imports'
 import { createNews, updateNews } from '@/graphql/mutations'
 import { listNewss } from '@/graphql/queries'
-import { NewsType } from '@/interfaces/news'
+import { APINewsType, NewsType } from '@/interfaces/news'
 import {
   GraphQLMutationVariables,
+  GRAPHQL_AUTH_MODE,
   useAmplifyGraphqlMutation,
   useAmplifyGraphqlQuery
 } from '@ycu-engine/amplify-api-hook'
@@ -35,30 +36,27 @@ export const useNews = () => {
   const { error, fetch, isLoading } = useAmplifyGraphqlQuery<
     NewsType[],
     ListNewssQuery
-  >(NewsAtom, listNewss, { limit: 100 }, res => {
-    if (!res.data || !res.data.listNewss || !res.data.listNewss.items) {
-      return []
+  >({
+    atom: NewsAtom,
+    option: {
+      query: listNewss,
+      variables: { limit: 100 },
+      authMode: GRAPHQL_AUTH_MODE.API_KEY
+    },
+    handler: res => {
+      if (!res.data || !res.data.listNewss || !res.data.listNewss.items) {
+        return []
+      }
+      const news = res.data.listNewss.items
+        .filter((item): item is APINewsType => !!item)
+        .map(item => ({
+          ...item,
+          createdAt: new Date(item?.createdAt),
+          updatedAt: new Date(item?.updatedAt)
+        }))
+      news.sort((a, b) => -(a.createdAt.getTime() - b.createdAt.getTime()))
+      return news
     }
-    const news = res.data.listNewss.items
-      .filter(
-        (
-          item
-        ): item is {
-          __typename: 'News'
-          id: string
-          title: string
-          content: string
-          createdAt: string
-          updatedAt: string
-        } => !!item
-      )
-      .map(item => ({
-        ...item,
-        createdAt: new Date(item?.createdAt),
-        updatedAt: new Date(item?.updatedAt)
-      }))
-    news.sort((a, b) => -(a.createdAt.getTime() - b.createdAt.getTime()))
-    return news
   })
 
   const { mutate: _create } = useAmplifyGraphqlMutation<

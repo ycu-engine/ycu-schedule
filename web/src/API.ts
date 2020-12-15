@@ -108,6 +108,21 @@ export type DeleteStudentProfileInput = {
   owner: string,
 };
 
+export type ModelStudentProfileFilterInput = {
+  owner?: ModelStringInput | null,
+  weeks?: ModelIntInput | null,
+  periods?: ModelIntInput | null,
+  and?: Array< ModelStudentProfileFilterInput | null > | null,
+  or?: Array< ModelStudentProfileFilterInput | null > | null,
+  not?: ModelStudentProfileFilterInput | null,
+};
+
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelNewsFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -134,21 +149,6 @@ export type ModelIDInput = {
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
 };
-
-export type ModelStudentProfileFilterInput = {
-  owner?: ModelStringInput | null,
-  weeks?: ModelIntInput | null,
-  periods?: ModelIntInput | null,
-  and?: Array< ModelStudentProfileFilterInput | null > | null,
-  or?: Array< ModelStudentProfileFilterInput | null > | null,
-  not?: ModelStudentProfileFilterInput | null,
-};
-
-export enum ModelSortDirection {
-  ASC = "ASC",
-  DESC = "DESC",
-}
-
 
 export type CreateNewsMutationVariables = {
   input: CreateNewsInput,
@@ -246,42 +246,6 @@ export type DeleteStudentProfileMutation = {
   } | null,
 };
 
-export type GetNewsQueryVariables = {
-  id: string,
-};
-
-export type GetNewsQuery = {
-  getNews:  {
-    __typename: "News",
-    id: string,
-    title: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListNewssQueryVariables = {
-  filter?: ModelNewsFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListNewssQuery = {
-  listNewss:  {
-    __typename: "ModelNewsConnection",
-    items:  Array< {
-      __typename: "News",
-      id: string,
-      title: string,
-      content: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
 export type GetStudentProfileQueryVariables = {
   owner: string,
 };
@@ -320,8 +284,12 @@ export type ListStudentProfilesQuery = {
   } | null,
 };
 
-export type OnCreateNewsSubscription = {
-  onCreateNews:  {
+export type GetNewsQueryVariables = {
+  id: string,
+};
+
+export type GetNewsQuery = {
+  getNews:  {
     __typename: "News",
     id: string,
     title: string,
@@ -331,25 +299,24 @@ export type OnCreateNewsSubscription = {
   } | null,
 };
 
-export type OnUpdateNewsSubscription = {
-  onUpdateNews:  {
-    __typename: "News",
-    id: string,
-    title: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
+export type ListNewssQueryVariables = {
+  filter?: ModelNewsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type OnDeleteNewsSubscription = {
-  onDeleteNews:  {
-    __typename: "News",
-    id: string,
-    title: string,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
+export type ListNewssQuery = {
+  listNewss:  {
+    __typename: "ModelNewsConnection",
+    items:  Array< {
+      __typename: "News",
+      id: string,
+      title: string,
+      content: string,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
@@ -393,6 +360,39 @@ export type OnDeleteStudentProfileSubscription = {
     owner: string,
     weeks: Array< number | null >,
     periods: Array< number | null >,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateNewsSubscription = {
+  onCreateNews:  {
+    __typename: "News",
+    id: string,
+    title: string,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateNewsSubscription = {
+  onUpdateNews:  {
+    __typename: "News",
+    id: string,
+    title: string,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteNewsSubscription = {
+  onDeleteNews:  {
+    __typename: "News",
+    id: string,
+    title: string,
+    content: string,
     createdAt: string,
     updatedAt: string,
   } | null,

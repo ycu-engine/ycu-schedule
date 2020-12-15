@@ -9,8 +9,8 @@ import { getError } from '../fields/error'
 type NewsFormType = {
   title: string
   content: string
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date | null
+  updatedAt?: Date | null
 }
 
 type NewsFormProps = {
@@ -27,9 +27,11 @@ export const NewsForm = ({ id, data }: NewsFormProps) => {
     watch,
     control
   } = useForm<NewsFormType>({
-    defaultValues: id
-      ? { ...data, updatedAt: new Date() }
-      : { ...data, createdAt: new Date(), updatedAt: new Date() }
+    defaultValues: {
+      ...data,
+      createdAt: data?.createdAt || null,
+      updatedAt: data?.updatedAt || null
+    }
   })
   const { create, update } = useNews()
 
@@ -39,16 +41,16 @@ export const NewsForm = ({ id, data }: NewsFormProps) => {
         input: {
           id,
           ...values,
-          createdAt: values.createdAt.toISOString(),
-          updatedAt: values.updatedAt.toISOString()
+          createdAt: values.createdAt?.toISOString(),
+          updatedAt: values.updatedAt?.toISOString()
         }
       })
     } else {
       await create({
         input: {
           ...values,
-          createdAt: values.createdAt.toISOString(),
-          updatedAt: values.updatedAt.toISOString()
+          createdAt: values.createdAt?.toISOString(),
+          updatedAt: values.updatedAt?.toISOString()
         }
       })
       reset()

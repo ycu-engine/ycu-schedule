@@ -1849,10 +1849,10 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@ycu-engine/amplify-api-hook@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@ycu-engine/amplify-api-hook/-/amplify-api-hook-0.0.3.tgz#f3fb3a0456ccd7f85c53609a601c2aa38c30a07c"
-  integrity sha512-lpFA0b7f078gVN2ERd6ZYtAiWOfU4zer4NzmaAgantvPy23cu0pLeCkhLJfVE2d7NQK33h7CaMBG6ylfG7kr9g==
+"@ycu-engine/amplify-api-hook@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@ycu-engine/amplify-api-hook/-/amplify-api-hook-0.1.1.tgz#968148ec2536878c5a3f52eb5f1134d3df9a7095"
+  integrity sha512-2YBGUN3/b4y88lfYWxi1y+TdIi6uEeuUks+JoDtNZdGTFFpbUbUoq+mVUG+lYQ6wG3wUKuHNyja0L5CRtYdbUQ==
 
 "@ycu-engine/amplify-auth-hook@^0.2.5":
   version "0.2.5"

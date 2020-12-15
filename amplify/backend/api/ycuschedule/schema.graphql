@@ -2,7 +2,13 @@ type News
   @model
   @auth(
     rules: [
-      { allow: groups, groups: ["staff"], operations: [create, update, delete] }
+      {
+        allow: groups
+        groups: ["staff"]
+        operations: [read, create, update, delete]
+      }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
     ]
   ) {
   id: ID!

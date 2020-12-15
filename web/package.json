@@ -10,7 +10,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@ycu-engine/amplify-api-hook": "^0.0.3",
+    "@ycu-engine/amplify-api-hook": "^0.1.1",
     "@ycu-engine/amplify-auth-hook": "^0.2.5",
     "amazon-cognito-identity-js": "^4.5.5",
     "aws-amplify": "^3.3.11",

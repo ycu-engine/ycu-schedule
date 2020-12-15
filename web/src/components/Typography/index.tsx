@@ -17,12 +17,13 @@ type LinkProps = {
 }
 
 const isSameSite = (url: string) => {
-  if (!process.browser) return false
   if (url.startsWith('/')) return true
   if (url.startsWith('#')) return true
   try {
     const uri = new URL(url)
-    return window.location.host === uri.host
+    return ['localhost', 'main.d26urztjxkulo9.amplifyapp.com'].includes(
+      uri.hostname
+    )
   } catch {
     return true
   }
