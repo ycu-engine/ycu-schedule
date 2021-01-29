@@ -1,0 +1,26 @@
+{
+  "name": "ycu-schedule",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ycu-engine/ycu-schedule.git",
+  "author": "YutaUra <yuuta3594@outlook.jp>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "postinstall": "typesync || :"
+  },
+  "dependencies": {
+    "next": "^10.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@sls-next/serverless-component": "1.19.0-alpha.30",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/serverless": "^1.78.20",
+    "serverless": "^2.21.1",
+    "typescript": "^4.1.3",
+    "typesync": "^0.8.0"
+  }
+}
