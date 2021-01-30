@@ -9,3 +9,9 @@ YcuSchedule:
     name: ycu-schedule
     cloudfront:
       distributionId: E286RN5HQFERMV
+    build:
+      env:
+        AZURE_CLIENT_ID: ${env:AZURE_CLIENT_ID}
+        AZURE_CLIENT_SECRET: ${env:AZURE_CLIENT_SECRET}
+        AZURE_TENANT_ID: ${env:AZURE_TENANT_ID}
+        NEXTAUTH_URL: https://www.ycu-schedule.ycu-engine.dev
