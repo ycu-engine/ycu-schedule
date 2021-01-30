@@ -1,5 +1,9 @@
+service: ycu-schedule
+
 YcuSchedule:
   component: './node_modules/@sls-next/serverless-component'
   inputs:
+    bucketName: ycu-schedule
+    name: ycu-schedule
     cloudfront:
       distributionId: E286RN5HQFERMV
