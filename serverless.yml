@@ -3,7 +3,8 @@ service: ycu-schedule
 YcuSchedule:
   component: './node_modules/@sls-next/serverless-component'
   inputs:
-    domain: ['www', 'ycu-schedule.ycu-engine.dev']
+    domain: ycu-schedule.ycu-engine.dev
+    domainType: www
     bucketName: ycu-schedule
     name: ycu-schedule
     cloudfront:
