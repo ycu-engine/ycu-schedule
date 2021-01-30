@@ -21,3 +21,19 @@ YcuSchedule:
         AZURE_CLIENT_SECRET: ${custom.env.AZURE_CLIENT_SECRET}
         AZURE_TENANT_ID: ${custom.env.AZURE_TENANT_ID}
         NEXTAUTH_URL: https://www.ycu-schedule.ycu-engine.dev
+
+YcuScheduleScrape:
+  component: '@serverless/aws-lambda'
+  inputs:
+    name: ycu-schedule-scrape
+    code: ./functions
+    handler: handlers.scrape.handler
+    env:
+      MICROSOFT_USER_2FA_SECRET: AAA
+    #   TABLE_NAME: my-table
+
+    # # if you'd like to include any shims
+    # shims:
+    #   - ../shims/shim.js
+
+    bucket: ycu-schedule

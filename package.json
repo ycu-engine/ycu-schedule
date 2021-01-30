@@ -16,13 +16,16 @@
     "postinstall": "typesync || :"
   },
   "dependencies": {
+    "@serverless/aws-lambda": "^3.0.3",
     "next": "^10.0.6",
     "next-auth": "^3.2.0-canary.42",
+    "node-2fa": "^2.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@sls-next/serverless-component": "1.19.0-alpha.30",
+    "@types/aws-lambda": "^8.10.71",
     "@types/eslint": "^7.2.6",
     "@types/eslint-plugin-prettier": "^3.1.0",
     "@types/jest": "^26.0.20",
@@ -43,6 +46,7 @@
     "prettier": "^2.2.1",
     "serverless": "^2.21.1",
     "ts-jest": "^26.5.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
     "typesync": "^0.8.0"
   },
