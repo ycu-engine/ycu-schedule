@@ -1,4 +1,8 @@
 service: ycu-schedule
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
 
 custom:
   env:
