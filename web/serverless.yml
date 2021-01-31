@@ -1,9 +1,6 @@
-org: yutaura
-app: ycu-schedule
-service: next
-
-component: './node_modules/@sls-next/serverless-component'
+component: '../node_modules/@sls-next/serverless-component'
 name: web
+
 inputs:
   name: ycu-schedule-web
   domain: ycu-schedule.ycu-engine.dev
