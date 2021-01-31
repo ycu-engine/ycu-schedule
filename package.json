@@ -6,49 +6,41 @@
   "author": "YutaUra <yuuta3594@outlook.jp>",
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "deploy": "serverless",
-    "test": "jest",
-    "format": "prettier -w src",
-    "lint": "yarn eslint src --ext ts,tsx",
-    "typecheck": "tsc",
-    "postinstall": "typesync || :"
+    "deploy": "serverless deploy",
+    "dev": "npm-run-all --parallel dev:*",
+    "dev:web": "yarn workspace web dev",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:web": "eslint --fix --ext .ts,.tsx ./web",
+    "lint-check": "npm-run-all --parallel lint-check:*",
+    "lint-check:web": "eslint --ext .ts,.tsx ./web",
+    "type-check": "npm-run-all --parallel type-check:*",
+    "type-check:web": "yarn workspace web type-check",
+    "test": "jest"
   },
-  "dependencies": {
-    "next": "^10.0.6",
-    "next-auth": "^3.2.0-canary.42",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
   "devDependencies": {
-    "@sls-next/serverless-component": "1.19.0-alpha.30",
-    "@types/eslint": "^7.2.6",
-    "@types/eslint-plugin-prettier": "^3.1.0",
-    "@types/jest": "^26.0.20",
-    "@types/next-auth": "^3.1.23",
-    "@types/prettier": "^2.1.6",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@types/serverless": "^1.78.20",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.8",
     "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "serverless": "^2.21.1",
-    "ts-jest": "^26.5.0",
-    "typescript": "^4.1.3",
-    "typesync": "^0.8.0"
+    "ts-jest": "^26.5.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all format lint test"
+      "pre-commit": "npm-run-all --parallel lint test"
     }
   }
 }

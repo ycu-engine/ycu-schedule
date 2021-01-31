@@ -1,8 +1,11 @@
-name: prod
+name: deploy-web
 
 on:
   push:
-    branches: ['main']
+    branches:
+      - main
+    paths:
+      - web/**/*
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
