@@ -1,5 +1,3 @@
-org: ycu-engine
-app: ycu-schedule
 component: './node_modules/@sls-next/serverless-component'
 name: web
 inputs:
