@@ -3,7 +3,7 @@ service: ycu-schedule
 provider:
   name: aws
   runtime: nodejs14.x
-  region: ${env:AWS_REGION}
+  region: ${opt:region, self:custom.variables.region}
   stage: ${opt:stage, self:custom.variables.stage}
   # environment:
   #   COGNITO_DOMAIN: ${env:COGNITO_DOMAIN}
@@ -12,6 +12,7 @@ provider:
 
 custom:
   variables:
+    region: ${env:AWS_REGION, ap-northeast-1}
     stage: ${env:AWS_STAGE, 'dev'}
     tableName: ${self:service}-${self:custom.variables.stage}
   dynamodb:
