@@ -1,0 +1,8 @@
+{
+  "name": "ycu-schedule",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ycu-engine/ycu-schedule.git",
+  "author": "YutaUra <yuuta3594@outlook.jp>",
+  "license": "MIT"
+}
