@@ -36,11 +36,20 @@ const ProjectionType = {
 
 const serverlessConfiguration: AWS = {
   service,
+  frameworkVersion: '2',
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',
     region,
-    stage
+    stage,
+    apiGateway: {
+      minimumCompressionSize: 1024,
+      shouldStartNameWithService: true
+    },
+    environment: {
+      AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+    },
+    lambdaHashingVersion: '20201221'
   },
   custom: {
     dynamodb: {
@@ -88,7 +97,11 @@ const serverlessConfiguration: AWS = {
           usage: 0.5 // Targeted usage percentage
         }
       }
-    ]
+    ],
+    webpack: {
+      webpackConfig: './webpack.config.js',
+      includeModules: true
+    }
   },
   functions: { hello },
   resources: {
@@ -169,7 +182,11 @@ const serverlessConfiguration: AWS = {
       }
     }
   },
-  plugins: ['serverless-dynamodb-local', 'serverless-dynamodb-autoscaling']
+  plugins: [
+    'serverless-dynamodb-local',
+    'serverless-dynamodb-autoscaling',
+    'serverless-webpack'
+  ]
 }
 
 module.exports = serverlessConfiguration
