@@ -129,10 +129,10 @@ const serverlessConfiguration: AWS = {
               KeyType: KeyType.RANGE
             }
           ],
-          // ProvisionedThroughput: {
-          //   ReadCapacityUnits: 5,
-          //   WriteCapacityUnits: 5
-          // },
+          ProvisionedThroughput: {
+            ReadCapacityUnits: 5,
+            WriteCapacityUnits: 5
+          },
           LocalSecondaryIndexes: [
             {
               IndexName: TableIndexes.byCreatedAt,
