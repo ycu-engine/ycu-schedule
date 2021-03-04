@@ -1,0 +1,14 @@
+[
+  {
+    "typeName": "User",
+    "id": "user-1",
+    "createdAt": 1614902400,
+    "updatedAt": 1614902400
+  },
+  {
+    "typeName": "User",
+    "id": "user-2",
+    "createdAt": 1614902400,
+    "updatedAt": 1614902400
+  }
+]
