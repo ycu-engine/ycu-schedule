@@ -1,6 +1,6 @@
 import type { AWS } from "@serverless/typescript"
 import * as functions from "~/functions/api"
-import { region, service, stage, tableName } from "~/meta"
+import { region, service, stage, tableName, variables } from "~/meta"
 import db from "~/resources/dynamodb"
 
 const provider: AWS["provider"] = {
@@ -42,12 +42,7 @@ const serverlessConfiguration: AWS = {
   frameworkVersion: "2",
   provider,
   custom: {
-    variables: {
-      region,
-      service,
-      stage,
-      tableName,
-    },
+    variables,
     ...(db.custom || {}),
     webpack: {
       webpackConfig: "./webpack.config.js",

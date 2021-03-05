@@ -4,3 +4,10 @@ export const stage = process.env.AWS_STAGE || "dev"
 export const tableName = `${service}-${stage}`
 
 export const tableNameRef = "${self:custom.variables.tableName}"
+
+export const variables = {
+  service,
+  region,
+  stage,
+  tableName,
+}
