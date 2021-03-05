@@ -22,6 +22,12 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: "20201221",
   },
   custom: {
+    variables: {
+      region,
+      service,
+      stage,
+      tableName,
+    },
     dynamodb: {
       stages: ["dev"],
       start: {
