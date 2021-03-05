@@ -11,9 +11,7 @@ const coursesByCode: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
 ) => {
   isAuthenticated(event.body.token)
   const courses = await listCourseByCode(event.body)
-  return formatJSONResponse({
-    courses,
-  })
+  return formatJSONResponse(courses)
 }
 
 export const main = middyfy(coursesByCode)

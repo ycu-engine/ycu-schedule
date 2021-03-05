@@ -9,9 +9,7 @@ const news: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
   const news = await getNews({ id: event.pathParameters.id })
-  return formatJSONResponse({
-    news,
-  })
+  return formatJSONResponse(news)
 }
 
 export const main = middyfy(news)
