@@ -7,5 +7,16 @@ export const getMicrosoftId = async (token: string): Promise<string> => {
     },
   })
   const data = await res.json()
-  return data.id
+  if (data.id) {
+    return data.id
+  }
+  if (data.error) {
+    throw Error(JSON.stringify(data.error))
+  }
+  throw Error(
+    JSON.stringify({
+      code: "InvalidAuthenticationToken",
+      message: "Access token is empty.",
+    })
+  )
 }

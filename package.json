@@ -11,14 +11,12 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write src/**/*.ts",
     "format-check": "prettier -c src/**/*.ts",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint src --ext .ts,.js",
     "postinstall": "husky install && typesync || :"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write"
-    ],
-    "*.{js,jsx,ts,tsx,md,mdx}": [
+    "*.{js,ts}": [
+      "prettier --write",
       "eslint --fix"
     ]
   },
