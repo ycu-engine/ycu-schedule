@@ -35,7 +35,7 @@ const serverless: Serverless = {
     dynamodb: {
       stages: ["dev"],
       start: {
-        port: 8000,
+        port: 7000,
         inMemory: true,
         heapInitial: "200m",
         heapMax: "1g",

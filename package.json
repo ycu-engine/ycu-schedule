@@ -9,6 +9,9 @@
     "dev": "cross-env AWS_REGION=\"ap-northeast-1\" run-p dev:*",
     "dev:dynamodb": "sls dynamodb start --migrate",
     "dev:lambda": "sls offline",
+    "dev:web": "yarn workspace web develop",
+    "build:web": "yarn workspace web build",
+    "serve:web": "yarn workspace web serve",
     "type-check": "tsc --noEmit",
     "format": "run-p format:*",
     "format:api": "prettier --write ./**/*.ts",
@@ -16,6 +19,12 @@
     "format-check:api": "prettier -c ./**/*.ts",
     "lint": "eslint . --ext .ts,.js",
     "postinstall": "husky install && typesync || :"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "web"
+    ]
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -32,6 +41,7 @@
     "serverless-dynamodb-autoscaling": "^0.6.2",
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.8.0",
+    "serverless-s3-sync": "^1.16.1",
     "serverless-webpack": "^5.3.5",
     "source-map-support": "^0.5.19"
   },
@@ -42,6 +52,8 @@
     "@types/node": "^14.14.31",
     "@types/node-fetch": "^2.5.8",
     "@types/prettier": "^2.2.2",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "@types/serverless": "^1.78.20",
     "@types/source-map-support": "^0.5.3",
     "@types/webpack-node-externals": "^2.5.0",

@@ -2,6 +2,7 @@ import type { AWS } from "@serverless/typescript"
 import * as functions from "~/functions/api"
 import { region, service, stage, tableName, variables } from "~/meta"
 import db from "~/resources/dynamodb"
+import s3 from "~/resources/s3"
 
 const provider: AWS["provider"] = {
   name: "aws",
@@ -44,6 +45,7 @@ const serverlessConfiguration: AWS = {
   custom: {
     variables,
     ...(db.custom || {}),
+    ...(s3.custom || {}),
     webpack: {
       webpackConfig: "./webpack.config.js",
       includeModules: true,
@@ -56,9 +58,15 @@ const serverlessConfiguration: AWS = {
   resources: {
     Resources: {
       db: db.resource,
+      s3: s3.resource,
     },
   },
-  plugins: [...(db.plugins || []), "serverless-webpack", "serverless-offline"],
+  plugins: [
+    ...(db.plugins || []),
+    ...(s3.plugins || []),
+    "serverless-webpack",
+    "serverless-offline",
+  ],
 }
 
 module.exports = serverlessConfiguration
