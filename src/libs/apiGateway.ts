@@ -1,14 +1,14 @@
-import type { AWS } from '@serverless/typescript'
+import type { AWS } from "@serverless/typescript"
 import type {
   APIGatewayProxyEvent,
   APIGatewayProxyResult,
-  Handler
-} from 'aws-lambda'
-import type { FromSchema } from 'json-schema-to-ts'
+  Handler,
+} from "aws-lambda"
+import type { FromSchema } from "json-schema-to-ts"
 
-export type AWS_Function = Exclude<AWS['functions'], undefined>[string]
+export type AWS_Function = Exclude<AWS["functions"], undefined>[string]
 
-type ValidatedAPIGatewayProxyEvent<S> = Omit<APIGatewayProxyEvent, 'body'> & {
+type ValidatedAPIGatewayProxyEvent<S> = Omit<APIGatewayProxyEvent, "body"> & {
   body: FromSchema<S>
 }
 export type ValidatedEventAPIGatewayProxyEvent<S> = Handler<
@@ -16,9 +16,14 @@ export type ValidatedEventAPIGatewayProxyEvent<S> = Handler<
   APIGatewayProxyResult
 >
 
-export const formatJSONResponse = (response: Record<string, unknown>) => {
+export const formatJSONResponse = (
+  response: Record<string, unknown>
+): {
+  statusCode: number
+  body: string
+} => {
   return {
     statusCode: 200,
-    body: JSON.stringify(response)
+    body: JSON.stringify(response),
   }
 }
