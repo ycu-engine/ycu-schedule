@@ -1,18 +1,16 @@
-import { tableNameRef } from "~/meta"
+import { environment } from "~functions/env"
 import { AWS_Function } from "~libs/apiGateway"
 import { handlerPath } from "~libs/handlerResolver"
 import schema from "./schema"
 
-export const userId: AWS_Function = {
+export const news__id: AWS_Function = {
   handler: `${handlerPath(__dirname)}/handler.main`,
-  environment: {
-    tableName: tableNameRef,
-  },
+  environment,
   events: [
     {
       http: {
-        method: "post",
-        path: "userId",
+        method: "get",
+        path: "news/{id}",
         request: {
           schema: {
             "application/json": schema,

@@ -1,7 +1,6 @@
 import type { AWS } from "@serverless/typescript"
 import { region, service, stage, tableName } from "~/meta"
-import { userId } from "~functions/getUserId"
-import { hello } from "~functions/hello"
+import * as functions from "~functions/index"
 import { TableIndexes, YcuSchedule } from "~resource/db"
 
 const serverlessConfiguration: AWS = {
@@ -82,7 +81,7 @@ const serverlessConfiguration: AWS = {
       httpPort: 4000,
     },
   },
-  functions: { hello, userId },
+  functions,
   resources: {
     Resources: {
       YcuSchedule,

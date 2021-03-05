@@ -1,16 +1,17 @@
 import "source-map-support/register"
+import { getNews } from "src/repository/news"
 import type { ValidatedEventAPIGatewayProxyEvent } from "~libs/apiGateway"
 import { formatJSONResponse } from "~libs/apiGateway"
 import { middyfy } from "~libs/lambda"
 import schema from "./schema"
 
-const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
+const news: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
   event
 ) => {
+  const news = await getNews({ id: event.pathParameters.id })
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
-    event,
+    news,
   })
 }
 
-export const main = middyfy(hello)
+export const main = middyfy(news)
