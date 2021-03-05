@@ -1,4 +1,4 @@
-import { TableSchema } from "~resource/db"
+import { TableSchema } from "~/api/resource/db"
 import { Course, Period, Week } from "./course"
 import { ObjectType } from "./type"
 

@@ -1,6 +1,6 @@
-import { environment } from "~functions/env"
-import { AWS_Function } from "~libs/apiGateway"
-import { handlerPath } from "~libs/handlerResolver"
+import { environment } from "~/api/functions/env"
+import { AWS_Function } from "~/api/libs/apiGateway"
+import { handlerPath } from "~/api/libs/handlerResolver"
 import schema from "./schema"
 
 export const coursesByCode: AWS_Function = {

@@ -1,7 +1,7 @@
-import { Course } from "src/models/course"
-import { ObjectType } from "src/models/type"
-import { batchGet, getTableName, query } from "~/service/db"
-import { TableIndexes, TableSchema } from "~resource/db"
+import { Course } from "~/api/models/course"
+import { ObjectType } from "~/api/models/type"
+import { TableIndexes, TableSchema } from "~/api/resource/db"
+import { batchGet, getTableName, query } from "~/api/service/db"
 
 export const listCourse = async ({
   week,

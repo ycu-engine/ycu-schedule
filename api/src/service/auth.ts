@@ -1,5 +1,5 @@
-import { encrypt } from "~libs/encrypt"
-import { getMicrosoftId } from "~libs/microsoftGraph"
+import { encrypt } from "~/api/libs/encrypt"
+import { getMicrosoftId } from "~/api/libs/microsoftGraph"
 
 export const isAuthenticated = async (token: string): Promise<string> => {
   return await getMicrosoftId(token)

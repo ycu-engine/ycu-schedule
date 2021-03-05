@@ -1,7 +1,7 @@
 import type { AWS } from "@serverless/typescript"
-import { region, service, stage, tableName } from "~/meta"
-import * as functions from "~functions/index"
-import { TableIndexes, YcuSchedule } from "~resource/db"
+import * as functions from "~/api/functions/index"
+import { region, service, stage, tableName } from "~/api/meta"
+import { TableIndexes, YcuSchedule } from "~/api/resource/db"
 
 const serverlessConfiguration: AWS = {
   service,

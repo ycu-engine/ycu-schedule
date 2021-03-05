@@ -14,7 +14,7 @@
         "outDir": "lib"
     },
     "include": [
-        "src/**/*.ts",
+        "api/**/*.ts",
         "serverless.ts"
     ],
     "exclude": [

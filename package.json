@@ -10,9 +10,11 @@
     "dev:dynamodb": "sls dynamodb start --migrate",
     "dev:lambda": "sls offline",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write src/**/*.ts",
-    "format-check": "prettier -c src/**/*.ts",
-    "lint": "eslint src --ext .ts,.js",
+    "format": "run-p format:*",
+    "format:api": "prettier --write api/**/*.ts",
+    "format-check": "run-p format-check:*",
+    "format-check:api": "prettier -c api/**/*.ts",
+    "lint": "eslint . --ext .ts,.js",
     "postinstall": "husky install && typesync || :"
   },
   "lint-staged": {

@@ -1,9 +1,9 @@
 import "source-map-support/register"
-import { listCourseByCode } from "src/repository/cource"
-import { isAuthenticated } from "src/service/auth"
-import type { ValidatedEventAPIGatewayProxyEvent } from "~libs/apiGateway"
-import { formatJSONResponse } from "~libs/apiGateway"
-import { middyfy } from "~libs/lambda"
+import type { ValidatedEventAPIGatewayProxyEvent } from "~/api/libs/apiGateway"
+import { formatJSONResponse } from "~/api/libs/apiGateway"
+import { middyfy } from "~/api/libs/lambda"
+import { listCourseByCode } from "~/api/repository/cource"
+import { isAuthenticated } from "~/api/service/auth"
 import schema from "./schema"
 
 const coursesByCode: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (

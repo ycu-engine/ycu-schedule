@@ -1,8 +1,8 @@
 import "source-map-support/register"
-import { listNews } from "src/repository/news"
-import type { ValidatedEventAPIGatewayProxyEvent } from "~libs/apiGateway"
-import { formatJSONResponse } from "~libs/apiGateway"
-import { middyfy } from "~libs/lambda"
+import type { ValidatedEventAPIGatewayProxyEvent } from "~/api/libs/apiGateway"
+import { formatJSONResponse } from "~/api/libs/apiGateway"
+import { middyfy } from "~/api/libs/lambda"
+import { listNews } from "~/api/repository/news"
 import schema from "./schema"
 
 const news: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async () => {

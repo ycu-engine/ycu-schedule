@@ -1,7 +1,7 @@
-import { ObjectType } from "src/models/type"
-import { User } from "src/models/user"
-import { get, getTableName, put } from "~/service/db"
-import { TableSchema } from "~resource/db"
+import { ObjectType } from "~/api/models/type"
+import { User } from "~/api/models/user"
+import { TableSchema } from "~/api/resource/db"
+import { get, getTableName, put } from "~/api/service/db"
 
 export const getUser = async ({ id }: { id: string }): Promise<User> => {
   if (typeof id !== "string") {
