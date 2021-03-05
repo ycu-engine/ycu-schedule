@@ -1,4 +1,5 @@
-import hello from '@functions/hello'
+import { userId } from '@functions/getUserId'
+import { hello } from '@functions/hello'
 import type { AWS } from '@serverless/typescript'
 
 const service = 'ycu-schedule'
@@ -103,7 +104,7 @@ const serverlessConfiguration: AWS = {
       includeModules: true
     }
   },
-  functions: { hello },
+  functions: { hello, userId },
   resources: {
     Resources: {
       YcuSchedule: {
