@@ -1,7 +1,6 @@
 import { environment } from "~functions/env"
 import { AWS_Function } from "~libs/apiGateway"
 import { handlerPath } from "~libs/handlerResolver"
-import schema from "./schema"
 
 export const news: AWS_Function = {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -11,11 +10,6 @@ export const news: AWS_Function = {
       http: {
         method: "get",
         path: "news",
-        request: {
-          schema: {
-            "application/json": schema,
-          },
-        },
       },
     },
   ],
