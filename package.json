@@ -11,9 +11,9 @@
     "dev:lambda": "sls offline",
     "type-check": "tsc --noEmit",
     "format": "run-p format:*",
-    "format:api": "prettier --write api/**/*.ts",
+    "format:api": "prettier --write ./**/*.ts",
     "format-check": "run-p format-check:*",
-    "format-check:api": "prettier -c api/**/*.ts",
+    "format-check:api": "prettier -c ./**/*.ts",
     "lint": "eslint . --ext .ts,.js",
     "postinstall": "husky install && typesync || :"
   },

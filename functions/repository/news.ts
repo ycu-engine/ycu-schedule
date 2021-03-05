@@ -1,7 +1,7 @@
-import { News } from "~/api/models/news"
-import { ObjectType } from "~/api/models/type"
-import { TableIndexes, TableSchema } from "~/api/resource/db"
-import { get, getTableName, query } from "~/api/service/db"
+import { News } from "~/functions/models/news"
+import { ObjectType } from "~/functions/models/type"
+import { TableIndexes, TableSchema } from "~/functions/resource/db"
+import { get, getTableName, query } from "~/functions/service/db"
 
 export const listNews = async (): Promise<News[]> => {
   const res = await query({

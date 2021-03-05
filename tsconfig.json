@@ -15,8 +15,10 @@
     },
     "include": [
         "api/**/*.ts",
+        "resources/**/*.ts",
+        "functions/**/*.ts",
         "serverless.ts",
-        "meta.ts"
+        "meta.ts",
     ],
     "exclude": [
         "node_modules/**/*",

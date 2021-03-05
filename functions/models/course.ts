@@ -1,4 +1,4 @@
-import { TableSchema } from "~/api/resource/db"
+import { TableSchema } from "~/functions/resource/db"
 import { ObjectType } from "./type"
 
 /**

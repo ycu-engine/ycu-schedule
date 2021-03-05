@@ -7,6 +7,12 @@
             ],
             "~/meta": [
                 "meta.ts"
+            ],
+            "~/resources/*": [
+                "resources/*"
+            ],
+            "~/functions/*": [
+                "functions/*"
             ]
         }
     }

@@ -1,6 +1,6 @@
-import { environment } from "~/api/functions/env"
-import { AWS_Function } from "~/api/libs/apiGateway"
-import { handlerPath } from "~/api/libs/handlerResolver"
+import { environment } from "~/functions/env"
+import { AWS_Function } from "~/functions/libs/apiGateway"
+import { handlerPath } from "~/functions/libs/handlerResolver"
 
 export const news: AWS_Function = {
   handler: `${handlerPath(__dirname)}/handler.main`,

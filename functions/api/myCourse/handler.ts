@@ -1,10 +1,10 @@
 import "source-map-support/register"
-import type { ValidatedEventAPIGatewayProxyEvent } from "~/api/libs/apiGateway"
-import { formatJSONResponse } from "~/api/libs/apiGateway"
-import { middyfy } from "~/api/libs/lambda"
-import { listCourseByIds } from "~/api/repository/cource"
-import { getUser } from "~/api/repository/user"
-import { getUserIdByToken } from "~/api/service/auth"
+import type { ValidatedEventAPIGatewayProxyEvent } from "~/functions/libs/apiGateway"
+import { formatJSONResponse } from "~/functions/libs/apiGateway"
+import { middyfy } from "~/functions/libs/lambda"
+import { listCourseByIds } from "~/functions/repository/cource"
+import { getUser } from "~/functions/repository/user"
+import { getUserIdByToken } from "~/functions/service/auth"
 import schema from "./schema"
 
 const myCourse: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
