@@ -1,5 +1,5 @@
 import type { AWS } from "@serverless/typescript"
-import { tableName } from "~/api/meta"
+import { tableName } from "~/meta"
 
 export const TableSchema = {
   typeName: "typeName",

@@ -5,6 +5,9 @@
             "~/api/*": [
                 "api/src/*"
             ],
+            "~/meta": [
+                "meta.ts"
+            ]
         }
     }
 }
