@@ -2,11 +2,20 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@functions/*": [
+            "~functions/*": [
                 "src/functions/*"
             ],
-            "@libs/*": [
+            "~libs/*": [
                 "src/libs/*"
+            ],
+            "~resource/*": [
+                "src/resource/*"
+            ],
+            "~/meta": [
+                "src/meta.ts"
+            ],
+            "~/service/*": [
+                "src/service/*"
             ]
         }
     }
