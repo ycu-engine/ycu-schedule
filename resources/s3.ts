@@ -1,18 +1,16 @@
 import { bucketName } from "~/meta"
 import { Serverless } from "./type"
 
-export const backetName = ``
-
 const s3: Serverless = {
   plugins: ["serverless-s3-sync"],
   custom: {
     s3Sync: [
       {
         bucketName,
-        localDir: "public",
+        localDir: "web/public",
         acl: "public-read",
         defaultContentType: "text/html",
-        params: "${file(../web/.cache/s3.params.json)}",
+        params: "${file(web/.cache/s3.params.json)}",
       },
     ],
   },
@@ -24,7 +22,7 @@ const s3: Serverless = {
       WebsiteConfiguration: {
         IndexDocument: "index.html",
         ErrorDocument: "404.html",
-        RoutingRules: "${file(../web/.cache/s3.sls.routingRules.json)}",
+        RoutingRules: "${file(web/.cache/s3.sls.routingRules.json)}",
       },
     },
   },
