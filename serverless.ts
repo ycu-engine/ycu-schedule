@@ -1,6 +1,13 @@
 import type { AWS } from "@serverless/typescript"
 import * as functions from "~/functions/api"
-import { region, service, stage, tableName, variables } from "~/meta"
+import {
+  cloudfrontCachePolicy,
+  region,
+  service,
+  stage,
+  tableName,
+  variables,
+} from "~/meta"
 import db from "~/resources/dynamodb"
 import s3 from "~/resources/s3"
 
@@ -36,6 +43,16 @@ const provider: AWS["provider"] = {
       ],
     },
   },
+  cloudFront: {
+    cachePolicies: {
+      [cloudfrontCachePolicy]: {
+        MinTTL: 31536000,
+        MaxTTL: 31536000,
+        DefaultTTL: 31536000,
+        ParametersInCacheKeyAndForwardedToOrigin: {},
+      },
+    },
+  },
 }
 
 const serverlessConfiguration: AWS = {
@@ -57,10 +74,15 @@ const serverlessConfiguration: AWS = {
       httpPort: 4000,
     },
     output: {
-      handler: "output-handler.handler",
       file: "web/src/info.json",
       hooks: ["after:info:info"],
     },
+    cloudfrontInvalidate: [
+      {
+        distributionId: `\${cf:${service}.CloudFrontDistribution}`,
+        items: ["/*"],
+      },
+    ],
   },
   functions,
   resources: {
@@ -74,6 +96,7 @@ const serverlessConfiguration: AWS = {
     ...(s3.plugins || []),
     "serverless-webpack",
     "serverless-offline",
+    "serverless-cloudfront-invalidate",
     "@ycu-engine/serverless-stack-output",
   ],
 }
