@@ -56,6 +56,7 @@ const serverlessConfiguration: AWS = {
     output: {
       handler: "output-handler.handler",
       file: "web/src/info.json",
+      hooks: ["after:info:info"],
     },
   },
   functions,
@@ -70,7 +71,7 @@ const serverlessConfiguration: AWS = {
     ...(s3.plugins || []),
     "serverless-webpack",
     "serverless-offline",
-    "serverless-stack-output",
+    "@ycu-engine/serverless-stack-output",
   ],
 }
 

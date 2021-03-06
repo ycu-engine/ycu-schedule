@@ -26,7 +26,10 @@
         ".serverless/**/*",
         ".webpack/**/*",
         "_warmup/**/*",
-        ".vscode/**/*"
+        ".vscode/**/*",
+        "web/node_modules/**/*",
+        "web/.cache/**/*",
+        "web/public/**/*",
     ],
     "ts-node": {
         "require": [

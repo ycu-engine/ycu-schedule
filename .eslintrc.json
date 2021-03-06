@@ -12,5 +12,9 @@
     "env": {
         "browser": true,
         "node": true
-    }
+    },
+    "ignorePatterns": [
+        "web/.cache/**/*",
+        "web/public/**/*"
+    ]
 }
