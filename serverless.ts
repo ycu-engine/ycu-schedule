@@ -54,6 +54,7 @@ const provider: AWS["provider"] = {
             CookieBehavior: "none",
           },
           EnableAcceptEncodingGzip: true,
+          EnableAcceptEncodingBrotli: true,
           HeadersConfig: {
             HeaderBehavior: "none",
           },
