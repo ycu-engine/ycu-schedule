@@ -6,7 +6,7 @@ import s3 from "~/resources/s3"
 
 const provider: AWS["provider"] = {
   name: "aws",
-  runtime: "nodejs14.x",
+  runtime: "nodejs12.x",
   region,
   stage,
   apiGateway: {
