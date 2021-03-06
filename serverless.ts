@@ -79,7 +79,7 @@ const serverlessConfiguration: AWS = {
     },
     cloudfrontInvalidate: [
       {
-        distributionId: `\${cf:${service}.CloudFrontDistribution}`,
+        distributionId: `\${cf:${service}-${stage}.CloudFrontDistribution}`,
         items: ["/*"],
       },
     ],
