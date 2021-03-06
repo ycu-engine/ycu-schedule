@@ -13946,6 +13946,14 @@ serverless-s3-sync@^1.16.1:
     mime "^2.4.4"
     minimatch "^3.0.4"
 
+serverless-stack-output@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/serverless-stack-output/-/serverless-stack-output-0.2.3.tgz#9125e61d5ac77118acb2c79849d7521913d26d96"
+  integrity sha512-bJUUXJ+bc0E+IBlWz+FyUpdNjEmSM0dYd2UpDX0h2zeW+luPOJeP//rbIamBmteJjbed9S3FtRWnLLRAJbzM5g==
+  dependencies:
+    tomlify-j0.4 "^2.0.0"
+    yamljs "^0.3.0"
+
 serverless-webpack@^5.3.5:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/serverless-webpack/-/serverless-webpack-5.3.5.tgz#3148433752893e9a91c6101dda78718a414e182e"
@@ -15330,6 +15338,11 @@ token-types@^2.0.0:
   dependencies:
     "@tokenizer/token" "^0.1.1"
     ieee754 "^1.2.1"
+
+tomlify-j0.4@^2.0.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tomlify-j0.4/-/tomlify-j0.4-2.2.1.tgz#60c4e7dd2066b2e917dd9a0de5fd676c0a6d7c7b"
+  integrity sha512-0kCocYX8ujnbK6jQ9e+g9GLiCIfVkFaCB3DCTQDP7J79gPVZVmZgQZ/KUNe1a6hUfrmHHaErVGUjedfpaX5EZw==
 
 tough-cookie@^2.3.3, tough-cookie@~2.5.0:
   version "2.5.0"

@@ -53,6 +53,10 @@ const serverlessConfiguration: AWS = {
     "serverless-offline": {
       httpPort: 4000,
     },
+    output: {
+      handler: "output-handler.handler",
+      file: "web/info.json",
+    },
   },
   functions,
   resources: {
@@ -66,6 +70,7 @@ const serverlessConfiguration: AWS = {
     ...(s3.plugins || []),
     "serverless-webpack",
     "serverless-offline",
+    "serverless-stack-output",
   ],
 }
 

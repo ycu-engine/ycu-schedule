@@ -12,7 +12,7 @@ export const courses: AWS_Function = {
         method: "get",
         path: "courses",
         request: {
-          schema: {
+          schemas: {
             "application/json": schema,
           },
         },
