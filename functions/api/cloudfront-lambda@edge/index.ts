@@ -1,7 +1,7 @@
 import { environment } from "~/functions/env"
 import { AWS_Function } from "~/functions/libs/apiGateway"
 import { handlerPath } from "~/functions/libs/handlerResolver"
-import { bucketName, cloudfrontCachePolicy, region } from "~/meta"
+import { bucketName, region } from "~/meta"
 
 export const cloudfrontLambdaAtEdge: AWS_Function = {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -16,12 +16,13 @@ export const cloudfrontLambdaAtEdge: AWS_Function = {
             OriginProtocolPolicy: "match-viewer",
           },
         },
-        behavior: {
-          ViewerProtocolPolicy: "redirect-to-https",
-        },
-        cachePolicy: {
-          name: cloudfrontCachePolicy,
-        },
+
+        // behavior: {
+        //   ViewerProtocolPolicy: "redirect-to-https",
+        // },
+        // cachePolicy: {
+        //   name: cloudfrontCachePolicy,
+        // },
       },
     },
   ],
