@@ -10,7 +10,9 @@ const s3: Serverless = {
         localDir: "web/public",
         acl: "public-read",
         defaultContentType: "text/html",
-        params: "${file(web/.cache/s3.params.json)}",
+        params: process.env.FIRST_DEPLOY
+          ? undefined
+          : "${file(web/.cache/s3.params.json)}",
       },
     ],
   },
@@ -22,7 +24,9 @@ const s3: Serverless = {
       WebsiteConfiguration: {
         IndexDocument: "index.html",
         ErrorDocument: "404.html",
-        RoutingRules: "${file(web/.cache/s3.sls.routingRules.json)}",
+        RoutingRules: process.env.FIRST_DEPLOY
+          ? undefined
+          : "${file(web/.cache/s3.sls.routingRules.json)}",
       },
     },
   },
