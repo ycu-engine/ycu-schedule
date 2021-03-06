@@ -55,7 +55,7 @@ const serverlessConfiguration: AWS = {
     },
     output: {
       handler: "output-handler.handler",
-      file: "web/info.json",
+      file: "web/src/info.json",
     },
   },
   functions,
