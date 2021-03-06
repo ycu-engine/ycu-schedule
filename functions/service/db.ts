@@ -1,6 +1,9 @@
 import { DocumentClient } from "aws-sdk/clients/dynamodb"
 
 export const getTableName = (): string => {
+  if (typeof process.env.tableName === "undefined") {
+    throw Error('enviroment variable "tableName" is not set')
+  }
   return process.env.tableName
 }
 

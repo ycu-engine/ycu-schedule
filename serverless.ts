@@ -49,7 +49,18 @@ const provider: AWS["provider"] = {
         MinTTL: 31536000,
         MaxTTL: 31536000,
         DefaultTTL: 31536000,
-        ParametersInCacheKeyAndForwardedToOrigin: {},
+        ParametersInCacheKeyAndForwardedToOrigin: {
+          CookiesConfig: {
+            CookieBehavior: "none",
+          },
+          EnableAcceptEncodingGzip: true,
+          HeadersConfig: {
+            HeaderBehavior: "none",
+          },
+          QueryStringsConfig: {
+            QueryStringBehavior: "none",
+          },
+        },
       },
     },
   },

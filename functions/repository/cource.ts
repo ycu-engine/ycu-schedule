@@ -79,6 +79,16 @@ export const listCourseByIds = async ({
       },
     },
   })
+  if (!res.Responses) {
+    throw Error("responce is empty")
+  }
   const courses = res.Responses[getTableName()] as Course[]
-  return ids.map((id) => courses.find((v) => v.id === id))
+
+  return ids.map((id) => {
+    const course = courses.find((v) => v.id === id)
+    if (!course) {
+      throw Error(`course<id:${id}> is not found`)
+    }
+    return course
+  })
 }

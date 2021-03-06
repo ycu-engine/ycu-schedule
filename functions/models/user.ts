@@ -2,8 +2,8 @@ import { TableSchema } from "~/functions/resource/db"
 import { Course, Period, Week } from "./course"
 import { ObjectType } from "./type"
 
-type MyCourseKey<T extends Week, K extends Period> = `${T}#${K}`
-type MyCourse = Partial<Record<MyCourseKey<Week, Period>, Course["id"]>>
+export type MyCourseKey = `${Week}#${Period}`
+export type MyCourse = Partial<Record<MyCourseKey, Course["id"]>>
 
 export type User = {
   [TableSchema.id]: string
