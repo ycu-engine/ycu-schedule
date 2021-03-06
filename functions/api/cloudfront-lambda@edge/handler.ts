@@ -1,6 +1,5 @@
 import type { Handler } from "aws-lambda"
 import "source-map-support/register"
-import { middyfy } from "~/functions/libs/lambda"
 
 const cloudfrontLambdaAtEdge: Handler = (event, _, callback) => {
   const response = event.Records[0].cf.response
@@ -13,4 +12,4 @@ const cloudfrontLambdaAtEdge: Handler = (event, _, callback) => {
   return callback(null, response)
 }
 
-export const main = middyfy(cloudfrontLambdaAtEdge)
+export const main = cloudfrontLambdaAtEdge

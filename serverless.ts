@@ -42,6 +42,9 @@ const serverlessConfiguration: AWS = {
   service,
   frameworkVersion: "2",
   provider,
+  package: {
+    individually: true,
+  },
   custom: {
     variables,
     ...(db.custom || {}),
