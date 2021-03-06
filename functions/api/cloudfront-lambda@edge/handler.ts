@@ -8,6 +8,7 @@ const cloudfrontLambdaAtEdge: Handler = (event, _, callback) => {
   headers["x-serverless-time"] = [
     { key: "x-serverless-time", value: Date.now().toString() },
   ]
+  console.log("Hey")
 
   return callback(null, response)
 }
