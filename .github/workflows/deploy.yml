@@ -38,7 +38,7 @@ jobs:
 
       - name: Deploy
         # run first deploy
-        run: yarn deploy--no-prebuild
+        run: yarn deploy--no-predeploy
         # 
         # run: yarn deploy
         env:
