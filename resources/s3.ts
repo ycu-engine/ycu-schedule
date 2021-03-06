@@ -7,8 +7,8 @@ const s3: Serverless = {
     s3Sync: [
       {
         bucketName,
-        localDir: process.env.FIRST_DEPLOY ? undefined : "web/public",
-        acl: "public-read",
+        localDir: process.env.FIRST_DEPLOY ? "web" : "web/public",
+        acl: process.env.FIRST_DEPLOY ? "private" : "public-read",
         defaultContentType: "text/html",
         params: process.env.FIRST_DEPLOY
           ? undefined
