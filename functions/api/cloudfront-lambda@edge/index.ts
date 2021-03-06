@@ -18,16 +18,6 @@ export const cloudfrontLambdaAtEdge: AWS_Function = {
         },
         behavior: {
           ViewerProtocolPolicy: "redirect-to-https",
-          AllowedMethods: [
-            "GET",
-            "HEAD",
-            "OPTIONS",
-            "PUT",
-            "PATCH",
-            "POST",
-            "DELETE",
-          ],
-          CachedMethods: ["GET", "HEAD", "OPTIONS"],
         },
         cachePolicy: {
           name: cloudfrontCachePolicy,
