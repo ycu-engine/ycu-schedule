@@ -1,5 +1,5 @@
 import * as React from "react"
-import info from "../../info.json"
+import info from "../info.json"
 
 // styles
 const pageStyles = {
