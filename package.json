@@ -39,7 +39,7 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
-    "@ycu-engine/serverless-stack-output": "^1.0.0",
+    "@ycu-engine/serverless-stack-output": "^1.0.1",
     "json-schema-to-ts": "^1.6.0",
     "node-fetch": "^2.6.1",
     "serverless": "^2.28.7",

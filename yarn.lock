@@ -3020,10 +3020,10 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@ycu-engine/serverless-stack-output@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ycu-engine/serverless-stack-output/-/serverless-stack-output-1.0.0.tgz#9e916d3e167a08a9d1db7d1cb99b5ad486f6c46d"
-  integrity sha512-G8s11M8nxSq94GqKclYzHi0HimyLuxn09FpIY2wMoBAtWgoVG6LV5Z9B2fNy6a+o2yjY/pcE6Fyh+phhz3YggA==
+"@ycu-engine/serverless-stack-output@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ycu-engine/serverless-stack-output/-/serverless-stack-output-1.0.1.tgz#298e320104b83cd530a7f6fb8323454018c22912"
+  integrity sha512-E1Cy3iCLtZkjbOVqUopwoSVKiSMJG1FFKXUC6AeYE0IMoefX6bh3RUgVT6t2wt2WwBZRNzzCXLNj6v1nnHdpsg==
   dependencies:
     tomlify-j0.4 "^2.0.0"
     yamljs "^0.3.0"
