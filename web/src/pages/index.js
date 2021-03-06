@@ -1,4 +1,5 @@
 import * as React from "react"
+import info from "../../info.json"
 
 // styles
 const pageStyles = {
@@ -127,6 +128,9 @@ const links = [
 
 // markup
 const IndexPage = () => {
+  React.useEffect(() => {
+    console.log(info)
+  }, [])
   return (
     <main style={pageStyles}>
       <title>Home Page</title>
