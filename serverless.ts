@@ -8,6 +8,7 @@ import {
   tableName,
   variables,
 } from "~/meta"
+import cloudfront from "~/resources/cloudfront"
 import db from "~/resources/dynamodb"
 import s3 from "~/resources/s3"
 
@@ -78,6 +79,7 @@ const serverlessConfiguration: AWS = {
     variables,
     ...(db.custom || {}),
     ...(s3.custom || {}),
+    ...(cloudfront.custom || {}),
     webpack: {
       webpackConfig: "./webpack.config.js",
       includeModules: true,
@@ -89,26 +91,21 @@ const serverlessConfiguration: AWS = {
       file: "web/src/info.json",
       hooks: ["after:info:info"],
     },
-    cloudfrontInvalidate: [
-      {
-        distributionId: `\${cf:${service}-${stage}.CloudFrontDistribution}`,
-        items: ["/*"],
-      },
-    ],
   },
   functions,
   resources: {
     Resources: {
       db: db.resource,
       s3: s3.resource,
+      cloudfront: cloudfront.resource,
     },
   },
   plugins: [
     ...(db.plugins || []),
     ...(s3.plugins || []),
+    ...(cloudfront.plugins || []),
     "serverless-webpack",
     "serverless-offline",
-    "serverless-cloudfront-invalidate",
     "@ycu-engine/serverless-stack-output",
   ],
 }
