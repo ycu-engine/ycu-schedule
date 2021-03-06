@@ -45,6 +45,7 @@
     "node-fetch": "^2.6.1",
     "serverless": "^2.28.7",
     "serverless-cloudfront-invalidate": "^1.8.0",
+    "serverless-cloudfront-lambdaedge-plugin": "^1.0.4",
     "serverless-domain-manager": "^5.1.0",
     "serverless-dynamodb-autoscaling": "^0.6.2",
     "serverless-dynamodb-local": "^0.2.39",

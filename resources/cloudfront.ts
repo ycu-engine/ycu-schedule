@@ -9,7 +9,10 @@ import {
 import { Serverless } from "./type"
 
 const cloudfront: Serverless = {
-  plugins: ["serverless-cloudfront-invalidate"],
+  plugins: [
+    "serverless-cloudfront-invalidate",
+    "serverless-cloudfront-lambdaedge-plugin",
+  ],
   custom: {
     cloudfrontInvalidate: [
       {
@@ -29,9 +32,35 @@ const cloudfront: Serverless = {
           CloudFrontDefaultCertificate: false,
           AcmCertificateArn: customDomainAcmCertificateArn,
         },
+        DefaultCacheBehavior: {
+          AllowedMethods: [
+            "GET",
+            "HEAD",
+            "OPTIONS",
+            "PUT",
+            "PATCH",
+            "POST",
+            "DELETE",
+          ],
+          CachedMethods: ["GET", "HEAD"],
+          CachePolicyId: {
+            Ref:
+              "CloudFrontCachePolicyYcuDashscheduleDashdevDashcacheDashpolicy",
+          },
+          LambdaFunctionAssociations: [
+            {
+              EventType: "viewer-response",
+              LambdaFunctionARN: "cloudfrontLambdaAtEdgeTemp1",
+            },
+          ],
+        },
         Origins: [
           {
-            id: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
+            Id: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
+            DomainName: `${bucketName}.s3-website-${region}.amazonaws.com`,
+            CustomOriginConfig: {
+              OriginProtocolPolicy: "match-viewer",
+            },
           },
         ],
       },
