@@ -1,7 +1,7 @@
 import { environment } from "~/functions/env"
 import { AWS_Function } from "~/functions/libs/apiGateway"
 import { handlerPath } from "~/functions/libs/handlerResolver"
-import { bucketName } from "~/meta"
+import { bucketName, region } from "~/meta"
 
 export const cloudfrontLambdaAtEdge: AWS_Function = {
   handler: `${handlerPath(__dirname)}/handler.main`,
@@ -11,7 +11,7 @@ export const cloudfrontLambdaAtEdge: AWS_Function = {
       cloudFront: {
         eventType: "viewer-response",
         origin: {
-          DomainName: `${bucketName}.s3.amazonaws.com`,
+          DomainName: `${bucketName}.s3-website-${region}.amazonaws.com`,
           CustomOriginConfig: {
             OriginProtocolPolicy: "match-viewer",
           },
