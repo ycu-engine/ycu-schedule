@@ -8,7 +8,7 @@
   "scripts": {
     "pre-deploy": "yarn build:web",
     "deploy": "yarn pre-deploy && sls deploy",
-    "deploy--first": "cros-env FIRST_DEPLOY=true yarn sls deploy",
+    "deploy--first": "cross-env FIRST_DEPLOY=true yarn sls deploy",
     "dev": "cross-env AWS_REGION=\"us-east-1\" run-p dev:*",
     "dev:dynamodb": "sls dynamodb start --migrate",
     "dev:lambda": "sls offline",
