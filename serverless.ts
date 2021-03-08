@@ -95,9 +95,14 @@ const serverlessConfiguration: AWS = {
   functions,
   resources: {
     Resources: {
-      db: db.resource,
-      s3: s3.resource,
-      cloudfront: cloudfront.resource,
+      ...(db.resources || {}),
+      ...(s3.resources || {}),
+      ...(cloudfront.resources || {}),
+    },
+    Outputs: {
+      ...(db.Outputs || {}),
+      ...(s3.Outputs || {}),
+      ...(cloudfront.Outputs || {}),
     },
   },
   plugins: [

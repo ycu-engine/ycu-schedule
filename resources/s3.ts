@@ -7,7 +7,7 @@ const s3: Serverless = {
     s3Sync: [
       {
         bucketName,
-        localDir: process.env.FIRST_DEPLOY ? "web" : "web/public",
+        localDir: "web/public",
         acl: process.env.FIRST_DEPLOY ? "private" : "public-read",
         defaultContentType: "text/html",
         params: process.env.FIRST_DEPLOY
@@ -16,17 +16,19 @@ const s3: Serverless = {
       },
     ],
   },
-  resource: {
-    Type: "AWS::S3::Bucket",
-    Properties: {
-      BucketName: bucketName,
-      AccessControl: "PublicRead",
-      WebsiteConfiguration: {
-        IndexDocument: "index.html",
-        ErrorDocument: "404.html",
-        RoutingRules: process.env.FIRST_DEPLOY
-          ? undefined
-          : "${file(web/.cache/s3.sls.routingRules.json)}",
+  resources: {
+    s3: {
+      Type: "AWS::S3::Bucket",
+      Properties: {
+        BucketName: bucketName,
+        AccessControl: "PublicRead",
+        WebsiteConfiguration: {
+          IndexDocument: "index.html",
+          ErrorDocument: "404.html",
+          RoutingRules: process.env.FIRST_DEPLOY
+            ? undefined
+            : "${file(web/.cache/s3.sls.routingRules.json)}",
+        },
       },
     },
   },

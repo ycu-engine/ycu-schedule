@@ -5,6 +5,7 @@ export const tableName = `${service}-${stage}`
 export const bucketName = `${service}-web-${stage}`
 export const cloudfrontCachePolicy = `${service}-${stage}-cache-policy`
 export const customDomain = "ycu-schedule.ycu-engine.dev"
+export const subDomains = ["www"]
 export const customDomainAcmCertificateArn =
   "arn:aws:acm:us-east-1:871572727617:certificate/bfc397bd-d26a-471b-a394-553089daf969"
 

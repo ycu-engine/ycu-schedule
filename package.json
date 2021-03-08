@@ -8,6 +8,7 @@
   "scripts": {
     "pre-deploy": "yarn build:web",
     "deploy": "yarn pre-deploy && sls deploy",
+    "deploy--no-predeploy": "sls deploy",
     "deploy--first": "cross-env FIRST_DEPLOY=true yarn sls deploy",
     "dev": "cross-env AWS_REGION=\"us-east-1\" run-p dev:*",
     "dev:dynamodb": "sls dynamodb start --migrate",
@@ -19,9 +20,9 @@
     "serve:web": "yarn workspace web serve",
     "type-check": "tsc --noEmit",
     "format": "run-p format:*",
-    "format:api": "prettier --write ./**/*.ts",
+    "format:api": "prettier --parser typescript --write ./**/*.ts",
     "format-check": "run-p format-check:*",
-    "format-check:api": "prettier -c ./**/*.ts",
+    "format-check:api": "prettier --parser typescript -c ./**/*.ts",
     "lint": "eslint . --ext .ts,.js",
     "postinstall": "husky install && typesync || :"
   },

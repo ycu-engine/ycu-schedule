@@ -2,7 +2,8 @@ import type { AWS } from "@serverless/typescript"
 import type { NonUndefined } from "type-util"
 
 export type Serverless = {
-  resource: NonUndefined<NonUndefined<AWS["resources"]>["Resources"]>[string]
+  resources: NonUndefined<NonUndefined<AWS["resources"]>["Resources"]>
   plugins?: string[]
-  custom?: AWS["custom"]
+  custom?: NonUndefined<AWS["custom"]>
+  Outputs?: NonUndefined<NonUndefined<AWS["resources"]>["Outputs"]>
 }
