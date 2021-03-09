@@ -1,6 +1,3 @@
-// export { cloudfrontLambdaAtEdge as cloudfrontLambdaAtEdgeTemp1 } from "./cloudfront-lambda@edge"
 export { courses } from "./courses"
 export { coursesByCode } from "./coursesByCode"
 export { myCourse } from "./myCourse"
-export { news } from "./news"
-export { news__id } from "./news__id"

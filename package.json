@@ -25,7 +25,9 @@
     "format:api": "prettier --parser typescript --write ./**/*.ts",
     "format-check": "run-p format-check:*",
     "format-check:api": "prettier --parser typescript -c ./**/*.ts",
-    "lint": "eslint . --ext .ts,.js",
+    "lint": "run-p lint:*",
+    "lint:root": "eslint . --ignore-pattern \"web/**/*\" --ext .ts,.js",
+    "lint:web": "yarn workspace web lint",
     "postinstall": "husky install && typesync || :"
   },
   "private": true,
@@ -36,6 +38,10 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "web/**/*.{js,ts,tsx}": [
       "prettier --write",
       "eslint --fix"
     ]

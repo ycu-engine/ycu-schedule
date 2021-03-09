@@ -1,8 +1,10 @@
-import { Fragment, useEffect } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import { Fragment, useMemo } from "react"
 import { Helmet } from "react-helmet"
 import { Callout } from "~/components/molecules/Callout"
 import { Card } from "~/components/molecules/Card"
-import { Heading1, Heading2 } from "~/components/molecules/Heading"
+import { Heading1, Heading2, Heading3 } from "~/components/molecules/Heading"
+import { renderAst } from "~/components/molecules/Markdown"
 import {
   Emphasis,
   InnerLink,
@@ -10,12 +12,35 @@ import {
   Paragraph,
 } from "~/components/molecules/Typography"
 import { HeroImage } from "~/components/organisms/HeroImage"
-import info from "../info.json"
 
 const IndexPage = (): JSX.Element => {
-  useEffect(() => {
-    console.log(info)
-  }, [])
+  const data = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
+    query IndexPage {
+      allMarkdownRemark(
+        sort: { fields: frontmatter___date, order: DESC }
+        limit: 1
+      ) {
+        nodes {
+          id
+          htmlAst
+          frontmatter {
+            date
+            title
+          }
+          parent {
+            ... on File {
+              name
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const latestNews = useMemo(() => data.allMarkdownRemark.nodes[0], [
+    data.allMarkdownRemark.nodes,
+  ])
+
   return (
     <Fragment>
       <Helmet>
@@ -47,19 +72,11 @@ const IndexPage = (): JSX.Element => {
 
       <Card>
         <Heading1>📗 お知らせ</Heading1>
-        <Heading2>2020/05/18</Heading2>
+        <Heading2>{latestNews.frontmatter?.title}</Heading2>
+        <Heading3>{latestNews.frontmatter?.date}</Heading3>
+        {renderAst(latestNews.htmlAst)}
         <Paragraph>
-          「なんかYCUスケジュールってよく言えばシンプルだけど、悪く言えばちょっとダサいよね。」
-          <br />
-          もうそんなことは言わせない（&lt;-誰も言っていない）
-          <br />
-          なんと、サイトがリニューアルしました！！🎉🎉🎉
-        </Paragraph>
-        <Paragraph>
-          ボランティアの方々に協力してもらい、こんな素敵なデザインになりました！
-        </Paragraph>
-        <Paragraph>
-          <InnerLink to="#">以前のお知らせ</InnerLink>
+          <InnerLink to="/news">以前のお知らせ</InnerLink>
         </Paragraph>
       </Card>
 

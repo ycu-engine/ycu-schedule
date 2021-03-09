@@ -1,7 +1,7 @@
 import { ObjectType } from "~/functions/models/type"
 import { User } from "~/functions/models/user"
-import { TableSchema } from "~/functions/resource/db"
 import { get, getTableName, put } from "~/functions/service/db"
+import { TableSchema } from "~/resources/dynamodb"
 
 export const getUser = async ({ id }: { id: string }): Promise<User> => {
   if (typeof id !== "string") {

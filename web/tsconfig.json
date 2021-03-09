@@ -13,6 +13,7 @@
         "target": "ES2020",
         "noEmit": true,
         "jsx": "react-jsx",
+        "allowJs": true,
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
@@ -21,11 +22,22 @@
                 "src/*"
             ]
         },
+        "plugins": [
+            {
+                "name": "ts-graphql-plugin",
+                "schema": "src/__generated__/gatsby-schema.graphql",
+                "tag": "graphql"
+            }
+        ],
+        "types": [
+            "@emotion/react/types/css-prop",
+            "node"
+        ]
     },
     "include": [
-        "global.d.ts",
         "src/**/*.tsx",
         "src/**/*.ts",
+        "@types/**/*"
     ],
     "exclude": [
         "node_modules/**/*",
