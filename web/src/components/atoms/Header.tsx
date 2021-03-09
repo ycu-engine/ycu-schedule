@@ -51,22 +51,17 @@ export const HeaderBrandNameStyle = styled(Link)`
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    bottom: 18px;
     content: "";
     height: 36px;
     position: absolute;
     left: 2vw;
     width: 36px;
     ${breakpointDown("sm")} {
-      bottom: 13px;
       height: 24px;
-      left: 12px;
       width: 24px;
     }
     ${breakpointDown("xl")} {
-      bottom: 21px;
       height: 30px;
-      left: 14px;
       width: 30px;
     }
   }

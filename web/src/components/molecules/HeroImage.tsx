@@ -5,6 +5,7 @@ import {
   HeroImageMainStyle,
   HeroImageStyle,
 } from "~/components/atoms/HeroImage"
+import { HeroImage01, HeroImage02 } from "../images/hero-image"
 
 type HeroImageProps =
   | {
@@ -25,6 +26,8 @@ export const HeroImage = ({
 }: HeroImageProps): JSX.Element => {
   return (
     <HeroImageStyle>
+      <HeroImage01 />
+      <HeroImage02 />
       <HeroImageMainStyle>
         横浜市大生のための
         <br />

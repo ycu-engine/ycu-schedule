@@ -1,4 +1,4 @@
-import { TableSchema } from "~/functions/resource/db"
+import { TableSchema } from "~/resources/dynamodb"
 import { ObjectType } from "./type"
 
 /**
@@ -25,9 +25,9 @@ export type Period = 1 | 2 | 3 | 4 | 5 | 6 | 7
 export type Course = {
   [TableSchema.id]: string
   [TableSchema.typeName]: typeof ObjectType.Course
-  [TableSchema.createdAt]: number
   [TableSchema.codeWeekPeriod]: string
   [TableSchema.weekPeriodCode]: string
+  createdAt: number
   updatedAt: number
   period: Period
   week: Week

@@ -10,7 +10,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-emotion",
-    "gatsby-plugin-image",
+    `gatsby-plugin-image`,
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
@@ -36,6 +36,15 @@ module.exports = {
       __key: "images",
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "news",
+        path: "./src/news/",
+      },
+      __key: "news",
+    },
+    `gatsby-transformer-remark`,
+    {
       resolve: `gatsby-plugin-s3`,
       options: {
         bucketName: bucketName,
@@ -54,6 +63,18 @@ module.exports = {
         isTSX: true,
         jsxPragma: `jsx`,
         allExtensions: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          "src/__generated__/gatsby-schema.graphql": true,
+          "src/__generated__/gatsby-introspection.json": true,
+        },
+        emitPluginDocuments: {
+          "src/__generated__/gatsby-plugin-documents.graphql": true,
+        },
       },
     },
   ],

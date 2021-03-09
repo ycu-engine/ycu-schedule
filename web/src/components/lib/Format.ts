@@ -1,11 +1,17 @@
+import type { Sub } from "./type"
 export const breakpoints = {
   xs: 0,
-  sm: 420,
-  lg: 960,
-  xl: 1280,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
 } as const
 
-export type Breakpoints = keyof typeof breakpoints
+export type BreakpointsType = typeof breakpoints
+export type Breakpoints = keyof BreakpointsType
+export type BreakpointsSize = BreakpointsType[Breakpoints]
+export type BreakpointsSizeMini = Sub<BreakpointsSize, 0.02>
 
 export const breakpointNext = (breakpoint: Breakpoints): Breakpoints | null => {
   const breakpointNames = Object.keys(breakpoints) as Breakpoints[]
@@ -17,31 +23,37 @@ export const breakpointNext = (breakpoint: Breakpoints): Breakpoints | null => {
   }
 }
 
-export const breakpointMin = (name: Breakpoints): number | null => {
+export const breakpointMin = (name: Breakpoints): BreakpointsSize | null => {
   const min = breakpoints[name]
   return min !== 0 ? min : null
 }
 
-export const breakpointMax = (name: Breakpoints): number | null => {
+export const breakpointMax = (
+  name: Breakpoints
+): BreakpointsSizeMini | null => {
   const max = breakpoints[name]
-  return max && max > 0 ? max - 0.02 : null
+  return max && max > 0 ? ((max - 0.02) as BreakpointsSizeMini) : null
 }
 
-export const breakpointUp = (name: Breakpoints): string => {
+export const breakpointUp = (
+  name: Breakpoints
+): `@media (min-width: ${BreakpointsType[typeof name]}px)` | "&" => {
   const min = breakpointMin(name)
   if (min) {
-    return `@media (min-width: ${min}px)`
+    return `@media (min-width: ${min}px)` as const
   } else {
-    return "&"
+    return "&" as const
   }
 }
 
-export const breakpointDown = (name: Breakpoints): string => {
+export const breakpointDown = (
+  name: Breakpoints
+): `@media (max-width: ${BreakpointsType[typeof name]}px)` | "&" => {
   const max = breakpointMax(name)
   if (max) {
-    return `@media (max-width: ${max}px)`
+    return `@media (max-width: ${max}px)` as const
   } else {
-    return "&"
+    return "&" as const
   }
 }
 

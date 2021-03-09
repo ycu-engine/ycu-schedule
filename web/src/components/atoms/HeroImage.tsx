@@ -2,44 +2,36 @@ import isPropValid from "@emotion/is-prop-valid"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import HeroImage01 from "~/images/hero-image_01.png"
-import HeroImage02 from "~/images/hero-image_02.png"
 import { MainOrSub } from "~/lib/types"
 import { SERVICE_COLORS } from "../lib/Color"
-import { breakpointDown } from "../lib/Format"
+import { breakpointDown, breakpointUp } from "../lib/Format"
 
 export const HeroImageStyle = styled.section`
   align-items: center;
-  background-attachment: fixed;
-  background-image: url(${HeroImage01});
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 600px;
   justify-content: center;
   width: 100vw;
-  ${breakpointDown("sm")} {
-    background-image: url(${HeroImage02});
-    height: 600px;
+  /* position: relative; */
+  ${breakpointUp("sm")} {
+    height: 500px;
   }
 `
 
 export const HeroImageMainStyle = styled.h1`
   color: #fff;
-  font-size: 40px;
   font-weight: bold;
   line-height: 1.4;
   text-align: center;
-  width: 600px;
-  ${breakpointDown("sm")} {
-    font-size: 30px;
-    width: calc(100vw - 80px);
-  }
-  ${breakpointDown("lg")} {
+  width: calc(100vw - 80px);
+  font-size: 30px;
+  ${breakpointUp("sm")} {
+    width: calc(100vw - 100px);
     font-size: 34px;
-    width: calc(100vw - 120px);
+  }
+  ${breakpointUp("lg")} {
+    width: 600px;
   }
 `
 
@@ -48,19 +40,19 @@ export const HeroImageBodyStyle = styled.p`
   font-size: 16px;
   line-height: 1.7;
   margin: 30px 0 0;
-  width: 600px;
-  ${breakpointDown("sm")} {
-    width: calc(100vw - 80px);
-  }
-  ${breakpointDown("lg")} {
+  width: calc(100vw - 80px);
+  ${breakpointUp("sm")} {
     width: calc(100vw - 120px);
+  }
+  ${breakpointUp("lg")} {
+    width: 600px;
   }
 `
 
 export const HeroImageButtonListStyle = styled.div`
   display: flex;
   margin: 40px 0 0;
-  ${breakpointDown("sm")} {
+  ${breakpointDown("md")} {
     flex-direction: column;
   }
 `
@@ -80,7 +72,7 @@ export const HeroImageButtonListItemStyle = styled(Link, {
   transition-duration: 0.3s;
   width: 220px;
 
-  ${breakpointDown("sm")} {
+  ${breakpointDown("md")} {
     margin: 10px 0;
     width: calc(100vw - 80px);
   }
