@@ -5973,6 +5973,16 @@ emojis-list@^3.0.0:
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
   integrity sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==
 
+emotion-reset@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/emotion-reset/-/emotion-reset-3.0.0.tgz#db06e2d3fd998bb2a374a82ab8723375fec21ab9"
+  integrity sha512-Ae3F49DMgaBYnu++FZww8VMLekkPpv8YmpQlF+TYEZ8BkYtJ49WtYG6+GGdKVSbaifkIr9YBHRWAJwomIaG6NQ==
+
+emotion-rgba@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/emotion-rgba/-/emotion-rgba-0.0.8.tgz#3d99230a74562e0a586f7479d52643fa77f36695"
+  integrity sha512-87O+XBMjV4HfRqbKH/WyIQx3d5hNs8JAgV2OfMvArqoUgu9zunyadrQ6+Y4z3yR7p+1uvSSeFAjRoYE9TjVeFw==
+
 enabled@1.0.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/enabled/-/enabled-1.0.2.tgz#965f6513d2c2d1c5f4652b64a2e3396467fc2f93"
@@ -7444,6 +7454,13 @@ gatsby-page-utils@^1.0.0:
     glob "^7.1.6"
     lodash "^4.17.20"
     micromatch "^4.0.2"
+
+gatsby-plugin-alias-imports@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-alias-imports/-/gatsby-plugin-alias-imports-1.0.5.tgz#44c0856d77acb74b58b89ec725dadd8f5d5b327d"
+  integrity sha512-q58JrSjuVNh4NApamqElR0zqwm55FOb9vFAVb2i2ftPRu0uYzWJkbOz2IN3vSw7a+5PmGzX7VL8XDFXlNHrMNA==
+  dependencies:
+    "@babel/runtime" "^7.2.0"
 
 gatsby-plugin-emotion@^6.0.0:
   version "6.0.0"

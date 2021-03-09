@@ -19,7 +19,6 @@
         "resources/**/*.ts",
         "functions/**/*.ts",
         "serverless.ts",
-        "web/**/*.ts",
         "meta.ts",
         "type-util.d.ts"
     ],
@@ -29,9 +28,7 @@
         ".webpack/**/*",
         "_warmup/**/*",
         ".vscode/**/*",
-        "web/node_modules/**/*",
-        "web/.cache/**/*",
-        "web/public/**/*",
+        "web/**/*",
     ],
     "ts-node": {
         "require": [
