@@ -6,7 +6,7 @@ const bucketName = `ycu-scheudle-${stage}`
 module.exports = {
   siteMetadata: {
     title: "YCU スケジュール",
-    siteUrl: "https://ycu-schedule.ycu-engine.dev",
+    siteUrl: "https://www.ycu-schedule.com",
   },
   plugins: [
     "gatsby-plugin-emotion",

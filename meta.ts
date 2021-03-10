@@ -4,10 +4,10 @@ export const stage = "${opt:stage, 'dev'}"
 export const tableName = `${service}-${stage}`
 export const bucketName = `${service}-web-${stage}`
 export const cloudfrontCachePolicy = `${service}`
-export const customDomain = "ycu-schedule.ycu-engine.dev"
+export const customDomain = "ycu-schedule.com"
 export const subDomains = ["www"]
 export const customDomainAcmCertificateArn =
-  "arn:aws:acm:us-east-1:871572727617:certificate/bfc397bd-d26a-471b-a394-553089daf969"
+  "arn:aws:acm:us-east-1:871572727617:certificate/cf1365b4-37fa-442f-8aeb-a7c5195008b5"
 
 export const isProd = process.env.SERVERLESS_ENV === "prod"
 
