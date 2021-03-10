@@ -96,7 +96,7 @@ const cloudfront: Serverless = {
           HeadersConfig: {
             HeaderBehavior: "whitelist",
             Headers: [
-              "Accept-Encoding",
+              "accept-encoding",
               "origin",
               "access-control-request-headers",
               "access-control-request-method",
