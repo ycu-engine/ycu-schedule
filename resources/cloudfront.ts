@@ -76,7 +76,7 @@ const cloudfront: Serverless = {
               Id: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
               DomainName: `${bucketName}.s3-website-${region}.amazonaws.com`,
               CustomOriginConfig: {
-                OriginProtocolPolicy: "match-viewer",
+                OriginProtocolPolicy: "http-only",
               },
             },
           ],
