@@ -88,9 +88,9 @@ const cloudfront: Serverless = {
       Properties: {
         CachePolicyConfig: {
           Comment: `${service}-${stage}`,
-          DefaultTTL: 0,
-          MaxTTL: 1,
-          MinTTL: 0,
+          DefaultTTL: 31536000,
+          MaxTTL: 31536000,
+          MinTTL: 31536000,
           Name: kebabCase2TitleCase(`${service}-${stage}`),
           ParametersInCacheKeyAndForwardedToOrigin: {
             CookiesConfig: {
