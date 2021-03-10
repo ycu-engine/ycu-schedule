@@ -44,6 +44,7 @@ const cloudfront: Serverless = {
         DistributionConfig: {
           Comment: `${service} ${stage}`,
           Enabled: true,
+          HttpVersion: "http2",
           Aliases: isProd
             ? [customDomain, ...subDomains.map((v) => `${v}.${customDomain}`)]
             : undefined,
@@ -97,6 +98,7 @@ const cloudfront: Serverless = {
             HeaderBehavior: "whitelist",
             Headers: [
               "origin",
+              "accept-encoding",
               "access-control-request-headers",
               "access-control-request-method",
             ],
@@ -124,8 +126,7 @@ const cloudfront: Serverless = {
             EnableAcceptEncodingGzip: true,
             EnableAcceptEncodingBrotli: true,
             HeadersConfig: {
-              HeaderBehavior: "whitelist",
-              Headers: ["Accept-Encoding"],
+              HeaderBehavior: "none",
             },
             QueryStringsConfig: {
               QueryStringBehavior: "none",
