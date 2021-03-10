@@ -75,7 +75,7 @@ const serverlessConfiguration: AWS = {
     ...(cloudfront.custom || {}),
     webpack: {
       webpackConfig: "./webpack.config.js",
-      includeModules: true,
+      // includeModules: true,
     },
     "serverless-offline": {
       httpPort: 4000,

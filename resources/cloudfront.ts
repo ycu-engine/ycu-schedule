@@ -10,6 +10,20 @@ import {
 } from "~/meta"
 import { Serverless } from "./type"
 
+/**
+ * ケバブケースをタイトルケースに変換
+ * キャッシュポリシー名にハイフンを使うことができないので、この関数で変換してあげる
+ * @param kebab kebab case string ex. hey-foo
+ * @returns title cased strint ex. HeyFoo
+ */
+const kebabCase2TitleCase = (kebab: string): string => {
+  return kebab
+    .split(/-+/)
+    .filter((word) => word.length > 0)
+    .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+    .join("")
+}
+
 const cloudfront: Serverless = {
   plugins: [
     "serverless-cloudfront-invalidate",
@@ -74,10 +88,10 @@ const cloudfront: Serverless = {
       Properties: {
         CachePolicyConfig: {
           Comment: `${service}-${stage}`,
-          DefaultTTL: 31536000,
-          MaxTTL: 86400,
-          MinTTL: 1,
-          Name: `${service}-${stage}`,
+          DefaultTTL: 0,
+          MaxTTL: 1,
+          MinTTL: 0,
+          Name: kebabCase2TitleCase(`${service}-${stage}`),
           ParametersInCacheKeyAndForwardedToOrigin: {
             CookiesConfig: {
               CookieBehavior: "none",
