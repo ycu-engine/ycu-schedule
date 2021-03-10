@@ -4,13 +4,11 @@ import { Serverless } from "./type"
 export const TableSchema = {
   typeName: "typeName",
   id: "id",
-  createdAt: "createdAt",
   weekPeriodCode: "weekPeriodCode",
   codeWeekPeriod: "codeWeekPeriod",
 } as const
 
 export const TableIndexes = {
-  byCreatedAt: "byCreatedAt",
   byWeekByPeriodByCode: "byWeekByPeriodByCode",
   byCodeByWeekByPeriod: "byCodeByWeekByPeriod",
 } as const
@@ -62,7 +60,6 @@ const serverless: Serverless = {
       {
         tableName: tableName,
         index: [
-          TableIndexes.byCreatedAt,
           TableIndexes.byWeekByPeriodByCode,
           TableIndexes.byCodeByWeekByPeriod,
         ],
@@ -94,10 +91,6 @@ const serverless: Serverless = {
             AttributeType: AttributeTypes.S,
           },
           {
-            AttributeName: TableSchema.createdAt,
-            AttributeType: AttributeTypes.N,
-          },
-          {
             AttributeName: TableSchema.weekPeriodCode,
             AttributeType: AttributeTypes.S,
           },
@@ -121,14 +114,6 @@ const serverless: Serverless = {
           WriteCapacityUnits: 5,
         },
         LocalSecondaryIndexes: [
-          {
-            IndexName: TableIndexes.byCreatedAt,
-            KeySchema: [
-              { AttributeName: TableSchema.typeName, KeyType: KeyType.HASH },
-              { AttributeName: TableSchema.createdAt, KeyType: KeyType.RANGE },
-            ],
-            Projection: { ProjectionType: ProjectionType.KEYS_ONLY },
-          },
           {
             IndexName: TableIndexes.byWeekByPeriodByCode,
             KeySchema: [

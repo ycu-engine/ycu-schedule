@@ -1,13 +1,6 @@
 import type { AWS } from "@serverless/typescript"
 import * as functions from "~/functions/api"
-import {
-  cloudfrontCachePolicy,
-  region,
-  service,
-  stage,
-  tableName,
-  variables,
-} from "~/meta"
+import { region, service, stage, tableName, variables } from "~/meta"
 import cloudfront from "~/resources/cloudfront"
 import db from "~/resources/dynamodb"
 import s3 from "~/resources/s3"
@@ -44,28 +37,28 @@ const provider: AWS["provider"] = {
       ],
     },
   },
-  cloudFront: {
-    cachePolicies: {
-      [cloudfrontCachePolicy]: {
-        MinTTL: 31536000,
-        MaxTTL: 31536000,
-        DefaultTTL: 31536000,
-        ParametersInCacheKeyAndForwardedToOrigin: {
-          CookiesConfig: {
-            CookieBehavior: "none",
-          },
-          EnableAcceptEncodingGzip: true,
-          EnableAcceptEncodingBrotli: true,
-          HeadersConfig: {
-            HeaderBehavior: "none",
-          },
-          QueryStringsConfig: {
-            QueryStringBehavior: "none",
-          },
-        },
-      },
-    },
-  },
+  // cloudFront: {
+  //   cachePolicies: {
+  //     [cloudfrontCachePolicy]: {
+  //       MinTTL: 1,
+  //       MaxTTL: 86400,
+  //       DefaultTTL: 31536000,
+  //       ParametersInCacheKeyAndForwardedToOrigin: {
+  //         CookiesConfig: {
+  //           CookieBehavior: "none",
+  //         },
+  //         EnableAcceptEncodingGzip: true,
+  //         EnableAcceptEncodingBrotli: true,
+  //         HeadersConfig: {
+  //           HeaderBehavior: "none",
+  //         },
+  //         QueryStringsConfig: {
+  //           QueryStringBehavior: "none",
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
 }
 
 const serverlessConfiguration: AWS = {
@@ -82,7 +75,7 @@ const serverlessConfiguration: AWS = {
     ...(cloudfront.custom || {}),
     webpack: {
       webpackConfig: "./webpack.config.js",
-      includeModules: true,
+      // includeModules: true,
     },
     "serverless-offline": {
       httpPort: 4000,
