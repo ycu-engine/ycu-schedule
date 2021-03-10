@@ -52,7 +52,7 @@ const cloudfront: Serverless = {
             ],
             CachedMethods: ["GET", "HEAD"],
             CachePolicyId: {
-              Ref: "CloudFrontCachePolicyYcuDashschedule",
+              Ref: "cloudfrontCachePolicy",
             },
             ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
@@ -66,6 +66,31 @@ const cloudfront: Serverless = {
               },
             },
           ],
+        },
+      },
+    },
+    cloudfrontCachePolicy: {
+      Type: "AWS::CloudFront::CachePolicy",
+      Properties: {
+        CachePolicyConfig: {
+          Comment: `${service}-${stage}`,
+          DefaultTTL: 31536000,
+          MaxTTL: 86400,
+          MinTTL: 1,
+          Name: `${service}-${stage}`,
+          ParametersInCacheKeyAndForwardedToOrigin: {
+            CookiesConfig: {
+              CookieBehavior: "none",
+            },
+            EnableAcceptEncodingGzip: true,
+            EnableAcceptEncodingBrotli: true,
+            HeadersConfig: {
+              HeaderBehavior: "none",
+            },
+            QueryStringsConfig: {
+              QueryStringBehavior: "none",
+            },
+          },
         },
       },
     },
