@@ -1,7 +1,7 @@
 on:
-  push:
-    tag:
-      - "v[0-9]+.[0-9]+"
+  release:
+    types:
+      - released
 
 name: Deploy Prod to AWS
 
