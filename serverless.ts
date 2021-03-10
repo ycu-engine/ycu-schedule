@@ -47,8 +47,8 @@ const provider: AWS["provider"] = {
   cloudFront: {
     cachePolicies: {
       [cloudfrontCachePolicy]: {
-        MinTTL: 31536000,
-        MaxTTL: 31536000,
+        MinTTL: 1,
+        MaxTTL: 86400,
         DefaultTTL: 31536000,
         ParametersInCacheKeyAndForwardedToOrigin: {
           CookiesConfig: {
