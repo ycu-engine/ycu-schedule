@@ -2,6 +2,7 @@ import {
   bucketName,
   customDomain,
   customDomainAcmCertificateArn,
+  isProd,
   region,
   service,
   stage,
@@ -12,7 +13,7 @@ import { Serverless } from "./type"
 const cloudfront: Serverless = {
   plugins: [
     "serverless-cloudfront-invalidate",
-    "serverless-cloudfront-lambdaedge-plugin",
+    // "serverless-cloudfront-lambdaedge-plugin",
   ],
   custom: {
     cloudfrontInvalidate: [
@@ -29,15 +30,16 @@ const cloudfront: Serverless = {
         DistributionConfig: {
           Comment: `${service} ${stage}`,
           Enabled: true,
-          Aliases: [
-            customDomain,
-            ...subDomains.map((v) => `${v}.${customDomain}`),
-          ],
-          ViewerCertificate: {
-            AcmCertificateArn: customDomainAcmCertificateArn,
-            MinimumProtocolVersion: "TLSv1.2_2019",
-            SslSupportMethod: "sni-only",
-          },
+          Aliases: isProd
+            ? [customDomain, ...subDomains.map((v) => `${v}.${customDomain}`)]
+            : undefined,
+          ViewerCertificate: isProd
+            ? {
+                AcmCertificateArn: customDomainAcmCertificateArn,
+                MinimumProtocolVersion: "TLSv1.2_2019",
+                SslSupportMethod: "sni-only",
+              }
+            : undefined,
           DefaultCacheBehavior: {
             AllowedMethods: [
               "GET",
@@ -50,10 +52,9 @@ const cloudfront: Serverless = {
             ],
             CachedMethods: ["GET", "HEAD"],
             CachePolicyId: {
-              Ref:
-                "CloudFrontCachePolicyYcuDashscheduleDashdevDashcacheDashpolicy",
+              Ref: "CloudFrontCachePolicyYcuDashscheduleDashcacheDashpolicy",
             },
-            ViewerProtocolPolicy: `redirect-to-https`,
+            ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
           },
           Origins: [
@@ -68,57 +69,6 @@ const cloudfront: Serverless = {
         },
       },
     },
-    route53HostedZone: {
-      Type: "AWS::Route53::HostedZone",
-      Properties: {
-        Name: customDomain,
-      },
-    },
-    route53RecordSetGroup: {
-      Type: "AWS::Route53::RecordSetGroup",
-      DependsOn: ["route53HostedZone"],
-      Properties: {
-        HostedZoneId: {
-          Ref: "route53HostedZone",
-        },
-        RecordSets: [
-          {
-            AliasTarget: {
-              DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
-              HostedZoneId: "Z2FDTNDATAQYW2",
-            },
-            Name: customDomain,
-            Type: "A",
-          },
-          {
-            AliasTarget: {
-              DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
-              HostedZoneId: "Z2FDTNDATAQYW2",
-            },
-            Name: customDomain,
-            Type: "AAAA",
-          },
-          ...subDomains.flatMap((v) => [
-            {
-              AliasTarget: {
-                DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
-                HostedZoneId: "Z2FDTNDATAQYW2",
-              },
-              Name: `${v}.${customDomain}`,
-              Type: "A",
-            },
-            {
-              AliasTarget: {
-                DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
-                HostedZoneId: "Z2FDTNDATAQYW2",
-              },
-              Name: `${v}.${customDomain}`,
-              Type: "AAAA",
-            },
-          ]),
-        ],
-      },
-    },
   },
   Outputs: {
     CloudFrontDistributionId: {
@@ -126,6 +76,60 @@ const cloudfront: Serverless = {
       Value: { Ref: "cloudfront" },
     },
   },
+}
+
+if (isProd) {
+  cloudfront.resources.route53HostedZone = {
+    Type: "AWS::Route53::HostedZone",
+    Properties: {
+      Name: customDomain,
+    },
+  }
+  cloudfront.resources.route53RecordSetGroup = {
+    Type: "AWS::Route53::RecordSetGroup",
+    DependsOn: ["route53HostedZone"],
+    Properties: {
+      HostedZoneId: {
+        Ref: "route53HostedZone",
+      },
+      RecordSets: [
+        {
+          AliasTarget: {
+            DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
+            HostedZoneId: "Z2FDTNDATAQYW2",
+          },
+          Name: customDomain,
+          Type: "A",
+        },
+        {
+          AliasTarget: {
+            DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
+            HostedZoneId: "Z2FDTNDATAQYW2",
+          },
+          Name: customDomain,
+          Type: "AAAA",
+        },
+        ...subDomains.flatMap((v) => [
+          {
+            AliasTarget: {
+              DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
+              HostedZoneId: "Z2FDTNDATAQYW2",
+            },
+            Name: `${v}.${customDomain}`,
+            Type: "A",
+          },
+          {
+            AliasTarget: {
+              DNSName: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
+              HostedZoneId: "Z2FDTNDATAQYW2",
+            },
+            Name: `${v}.${customDomain}`,
+            Type: "AAAA",
+          },
+        ]),
+      ],
+    },
+  }
 }
 
 export default cloudfront

@@ -2790,21 +2790,6 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
-  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-
-  type NewsPageQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "excerptAst"> & {
-          readonly parent: Maybe<Pick<File, "name">>
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
-          >
-        }
-      >
-    }
-  }
-
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
 
   type IndexPageQuery = {
@@ -2916,4 +2901,19 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
+
+  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type NewsPageQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, "id" | "excerptAst"> & {
+          readonly parent: Maybe<Pick<File, "name">>
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+          >
+        }
+      >
+    }
+  }
 }
