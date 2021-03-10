@@ -69,6 +69,7 @@ const cloudfront: Serverless = {
             CachePolicyId: {
               Ref: "cloudfrontCachePolicy",
             },
+            Compress: true,
             OriginRequestPolicyId: {
               Ref: "cloudfrontOriginRequestPolicy",
             },
@@ -98,7 +99,6 @@ const cloudfront: Serverless = {
             HeaderBehavior: "whitelist",
             Headers: [
               "origin",
-              "accept-encoding",
               "access-control-request-headers",
               "access-control-request-method",
             ],
