@@ -68,6 +68,9 @@ const cloudfront: Serverless = {
             CachePolicyId: {
               Ref: "cloudfrontCachePolicy",
             },
+            OriginRequestPolicyId: {
+              Ref: "cloudfrontOriginRequestPolicy",
+            },
             ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
           },
@@ -80,6 +83,23 @@ const cloudfront: Serverless = {
               },
             },
           ],
+        },
+      },
+    },
+    cloudfrontOriginRequestPolicy: {
+      Type: "AWS::CloudFront::OriginRequestPolicy",
+      Properties: {
+        OriginRequestPolicyConfig: {
+          CookiesConfig: {
+            CookieBehavior: "none",
+          },
+          HeadersConfig: {
+            HeaderBehavior: "allViewer",
+          },
+          Name: kebabCase2TitleCase(`${service}-${stage}`),
+          QueryStringsConfig: {
+            QueryStringBehavior: "all",
+          },
         },
       },
     },
