@@ -94,7 +94,13 @@ const cloudfront: Serverless = {
             CookieBehavior: "none",
           },
           HeadersConfig: {
-            HeaderBehavior: "allViewer",
+            HeaderBehavior: "whitelist",
+            Headers: [
+              "Accept-Encoding",
+              "origin",
+              "access-control-request-headers",
+              "access-control-request-method",
+            ],
           },
           Name: kebabCase2TitleCase(`${service}-${stage}`),
           QueryStringsConfig: {
