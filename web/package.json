@@ -17,6 +17,7 @@
     "emotion-rgba": "^0.0.8",
     "gatsby": "^3.0.2",
     "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-brotli": "^2.0.0",
     "gatsby-plugin-emotion": "^6.0.0",
     "gatsby-plugin-google-analytics": "^3.0.0",
     "gatsby-plugin-image": "^1.0.0",

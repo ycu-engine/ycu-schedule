@@ -763,6 +763,7 @@ type SitePluginPluginOptions {
   path: String
   bucketName: String
   alias: SitePluginPluginOptionsAlias
+  extensions: [String]
   isTSX: Boolean
   jsxPragma: String
   allExtensions: Boolean
@@ -2382,6 +2383,7 @@ input SitePluginPluginOptionsFilterInput {
   path: StringQueryOperatorInput
   bucketName: StringQueryOperatorInput
   alias: SitePluginPluginOptionsAliasFilterInput
+  extensions: StringQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
@@ -2573,6 +2575,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___path
   pluginOptions___bucketName
   pluginOptions___alias____
+  pluginOptions___extensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
   pluginOptions___allExtensions

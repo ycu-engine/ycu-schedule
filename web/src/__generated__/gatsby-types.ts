@@ -625,6 +625,7 @@ declare namespace GatsbyTypes {
     readonly path: Maybe<Scalars["String"]>
     readonly bucketName: Maybe<Scalars["String"]>
     readonly alias: Maybe<SitePluginPluginOptionsAlias>
+    readonly extensions: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>
     readonly isTSX: Maybe<Scalars["Boolean"]>
     readonly jsxPragma: Maybe<Scalars["String"]>
     readonly allExtensions: Maybe<Scalars["Boolean"]>
@@ -2532,6 +2533,7 @@ declare namespace GatsbyTypes {
     readonly path: Maybe<StringQueryOperatorInput>
     readonly bucketName: Maybe<StringQueryOperatorInput>
     readonly alias: Maybe<SitePluginPluginOptionsAliasFilterInput>
+    readonly extensions: Maybe<StringQueryOperatorInput>
     readonly isTSX: Maybe<BooleanQueryOperatorInput>
     readonly jsxPragma: Maybe<StringQueryOperatorInput>
     readonly allExtensions: Maybe<BooleanQueryOperatorInput>
@@ -2733,6 +2735,7 @@ declare namespace GatsbyTypes {
     | "pluginOptions.path"
     | "pluginOptions.bucketName"
     | "pluginOptions.alias._"
+    | "pluginOptions.extensions"
     | "pluginOptions.isTSX"
     | "pluginOptions.jsxPragma"
     | "pluginOptions.allExtensions"
@@ -2788,6 +2791,21 @@ declare namespace GatsbyTypes {
   type SitePluginSortInput = {
     readonly fields: Maybe<ReadonlyArray<Maybe<SitePluginFieldsEnum>>>
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
+  }
+
+  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type NewsPageQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, "id" | "excerptAst"> & {
+          readonly parent: Maybe<Pick<File, "name">>
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+          >
+        }
+      >
+    }
   }
 
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
@@ -2901,19 +2919,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
-
-  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-
-  type NewsPageQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "excerptAst"> & {
-          readonly parent: Maybe<Pick<File, "name">>
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
-          >
-        }
-      >
-    }
-  }
 }
