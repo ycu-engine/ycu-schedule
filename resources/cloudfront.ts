@@ -96,7 +96,6 @@ const cloudfront: Serverless = {
           HeadersConfig: {
             HeaderBehavior: "whitelist",
             Headers: [
-              // "Accept-Encoding",
               "origin",
               "access-control-request-headers",
               "access-control-request-method",
@@ -125,7 +124,8 @@ const cloudfront: Serverless = {
             EnableAcceptEncodingGzip: true,
             EnableAcceptEncodingBrotli: true,
             HeadersConfig: {
-              HeaderBehavior: "none",
+              HeaderBehavior: "whitelist",
+              Headers: ["Accept-Encoding"],
             },
             QueryStringsConfig: {
               QueryStringBehavior: "none",
