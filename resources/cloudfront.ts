@@ -52,7 +52,7 @@ const cloudfront: Serverless = {
             ],
             CachedMethods: ["GET", "HEAD"],
             CachePolicyId: {
-              Ref: "CloudFrontCachePolicyYcuDashscheduleDashcacheDashpolicy",
+              Ref: "CloudFrontCachePolicyYcuDashschedule",
             },
             ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
