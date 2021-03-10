@@ -4,7 +4,6 @@ import styled from "@emotion/styled"
 import { rgba } from "emotion-rgba"
 import { Link } from "gatsby"
 import { FC } from "react"
-import IconBrand from "~/images/icon_brand.png"
 import IconMenuClosed from "~/images/icon_menu-closed.svg"
 import IconMenuOpen from "~/images/icon_menu-open.svg"
 import { SERVICE_COLORS } from "../lib/Color"
@@ -46,8 +45,8 @@ export const HeaderBrandNameStyle = styled(Link)`
   ${breakpointDown("xl")} {
     width: 240px;
   }
-  &::before {
-    background-image: url(${IconBrand});
+  /* &::before {
+    background-image: url(\${IconBrand});
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -64,7 +63,7 @@ export const HeaderBrandNameStyle = styled(Link)`
       height: 30px;
       width: 30px;
     }
-  }
+  } */
 
   &::after {
     border-color: transparent transparent #fff transparent;

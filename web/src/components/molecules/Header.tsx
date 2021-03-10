@@ -14,6 +14,7 @@ import {
   HeaderMobileStyle,
   HeaderStyle,
 } from "../atoms/Header"
+import { IconBrand } from "../images/icon_brand"
 
 type HeaderProps =
   | {
@@ -41,6 +42,7 @@ export const Header = ({
   return (
     <HeaderStyle>
       <HeaderBrandNameStyle to="/">
+        <IconBrand />
         <HeaderBrandNameTextStyle>YCU Schedule</HeaderBrandNameTextStyle>
       </HeaderBrandNameStyle>
 
