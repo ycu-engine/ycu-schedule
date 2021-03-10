@@ -96,10 +96,10 @@ const cloudfront: Serverless = {
           HeadersConfig: {
             HeaderBehavior: "whitelist",
             Headers: [
-              "accept-encoding",
-              "origin",
-              "access-control-request-headers",
-              "access-control-request-method",
+              "Accept-Encoding",
+              // "origin",
+              // "access-control-request-headers",
+              // "access-control-request-method",
             ],
           },
           Name: kebabCase2TitleCase(`${service}-${stage}`),
