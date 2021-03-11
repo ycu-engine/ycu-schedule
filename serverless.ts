@@ -37,28 +37,6 @@ const provider: AWS["provider"] = {
       ],
     },
   },
-  // cloudFront: {
-  //   cachePolicies: {
-  //     [cloudfrontCachePolicy]: {
-  //       MinTTL: 1,
-  //       MaxTTL: 86400,
-  //       DefaultTTL: 31536000,
-  //       ParametersInCacheKeyAndForwardedToOrigin: {
-  //         CookiesConfig: {
-  //           CookieBehavior: "none",
-  //         },
-  //         EnableAcceptEncodingGzip: true,
-  //         EnableAcceptEncodingBrotli: true,
-  //         HeadersConfig: {
-  //           HeaderBehavior: "none",
-  //         },
-  //         QueryStringsConfig: {
-  //           QueryStringBehavior: "none",
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
 }
 
 const serverlessConfiguration: AWS = {

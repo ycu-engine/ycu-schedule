@@ -41,7 +41,12 @@ export const EmphasisStyle = styled.span`
   font-weight: bold;
 `
 
-export const LinkStyleCSS = css`
+export const StrongStyle = styled.strong`
+  color: ${rgba(SERVICE_COLORS.FONT, 0.9)};
+  font-weight: bold;
+`
+
+export const LinkCSS = css`
   color: ${rgba(SERVICE_COLORS.MAIN, 1)};
   transition-duration: 0.3s;
 
@@ -52,7 +57,7 @@ export const LinkStyleCSS = css`
   }
 `
 
-export const ShortLinkStyleCSS = css`
+export const ShortLinkCSS = css`
   display: inline-block;
   width: 250px;
   white-space: nowrap;

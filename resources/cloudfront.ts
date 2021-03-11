@@ -44,6 +44,7 @@ const cloudfront: Serverless = {
         DistributionConfig: {
           Comment: `${service} ${stage}`,
           Enabled: true,
+          HttpVersion: "http2",
           Aliases: isProd
             ? [customDomain, ...subDomains.map((v) => `${v}.${customDomain}`)]
             : undefined,
@@ -68,7 +69,11 @@ const cloudfront: Serverless = {
             CachePolicyId: {
               Ref: "cloudfrontCachePolicy",
             },
-            ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
+            Compress: true,
+            OriginRequestPolicyId: {
+              Ref: "cloudfrontOriginRequestPolicy",
+            },
+            ViewerProtocolPolicy: `redirect-to-https`,
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
           },
           Origins: [
@@ -83,14 +88,36 @@ const cloudfront: Serverless = {
         },
       },
     },
+    cloudfrontOriginRequestPolicy: {
+      Type: "AWS::CloudFront::OriginRequestPolicy",
+      Properties: {
+        OriginRequestPolicyConfig: {
+          CookiesConfig: {
+            CookieBehavior: "none",
+          },
+          HeadersConfig: {
+            HeaderBehavior: "whitelist",
+            Headers: [
+              "origin",
+              "access-control-request-headers",
+              "access-control-request-method",
+            ],
+          },
+          Name: kebabCase2TitleCase(`${service}-${stage}`),
+          QueryStringsConfig: {
+            QueryStringBehavior: "all",
+          },
+        },
+      },
+    },
     cloudfrontCachePolicy: {
       Type: "AWS::CloudFront::CachePolicy",
       Properties: {
         CachePolicyConfig: {
           Comment: `${service}-${stage}`,
-          DefaultTTL: 0,
-          MaxTTL: 1,
-          MinTTL: 0,
+          DefaultTTL: 31536000,
+          MaxTTL: 31536000,
+          MinTTL: 31536000,
           Name: kebabCase2TitleCase(`${service}-${stage}`),
           ParametersInCacheKeyAndForwardedToOrigin: {
             CookiesConfig: {
@@ -113,6 +140,10 @@ const cloudfront: Serverless = {
     CloudFrontDistributionId: {
       Description: "CloudFront distribution id",
       Value: { Ref: "cloudfront" },
+    },
+    CloudFrontDistributionDomainName: {
+      Description: "CloudFront distribution domain name",
+      Value: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
     },
   },
 }

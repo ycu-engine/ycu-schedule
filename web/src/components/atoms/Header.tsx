@@ -2,9 +2,7 @@ import isPropValid from "@emotion/is-prop-valid"
 import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { rgba } from "emotion-rgba"
-import { Link } from "gatsby"
-import { FC } from "react"
-import IconBrand from "~/images/icon_brand.png"
+import { CustomGatsbyLinkProps, Link } from "gatsby"
 import IconMenuClosed from "~/images/icon_menu-closed.svg"
 import IconMenuOpen from "~/images/icon_menu-open.svg"
 import { SERVICE_COLORS } from "../lib/Color"
@@ -45,25 +43,6 @@ export const HeaderBrandNameStyle = styled(Link)`
   }
   ${breakpointDown("xl")} {
     width: 240px;
-  }
-  &::before {
-    background-image: url(${IconBrand});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    content: "";
-    height: 36px;
-    position: absolute;
-    left: 2vw;
-    width: 36px;
-    ${breakpointDown("sm")} {
-      height: 24px;
-      width: 24px;
-    }
-    ${breakpointDown("xl")} {
-      height: 30px;
-      width: 30px;
-    }
   }
 
   &::after {
@@ -131,7 +110,9 @@ export const HeaderLaptopNavigationNonMemberStyle = styled(
   justify-content: flex-end;
 `
 
-const HeaderLaptopNavigationItemStyle_ = styled(Link)`
+export const HeaderLaptopNavigationItemStyle = styled<
+  (props: CustomGatsbyLinkProps) => JSX.Element
+>((props) => <Link activeClassName="is-active" partiallyActive {...props} />)`
   align-items: center;
   border: 1px solid ${rgba(SERVICE_COLORS.MAIN, 0)};
   border-radius: 4px;
@@ -154,40 +135,20 @@ const HeaderLaptopNavigationItemStyle_ = styled(Link)`
     cursor: pointer;
     transition-duration: 0.3s;
   }
-`
 
-const headerLaptopNavigationItemIsActiveStyle = css`
-  background-color: ${rgba(SERVICE_COLORS.MAIN, 0.1)};
-  color: ${SERVICE_COLORS.MAIN};
-  cursor: pointer;
-  transition-duration: 0.3s;
-
-  &:hover {
-    border: 1px solid ${rgba(SERVICE_COLORS.MAIN, 0.4)};
+  &.is-active {
+    background-color: ${rgba(SERVICE_COLORS.MAIN, 0.1)};
     color: ${SERVICE_COLORS.MAIN};
+    cursor: pointer;
     transition-duration: 0.3s;
+
+    &:hover {
+      border: 1px solid ${rgba(SERVICE_COLORS.MAIN, 0.4)};
+      color: ${SERVICE_COLORS.MAIN};
+      transition-duration: 0.3s;
+    }
   }
 `
-
-export const HeaderLaptopNavigationItemStyle: FC<
-  Parameters<typeof HeaderLaptopNavigationItemStyle_>["0"]
-> = ({ ...props }) => {
-  return (
-    <HeaderLaptopNavigationItemStyle_
-      //   getProps={({ isPartiallyCurrent }) => {
-      //     console.log(isPartiallyCurrent, className)
-      //     return {
-      //       className: isPartiallyCurrent
-      //         ? `${className} ${headerLaptopNavigationItemIsActive}`
-      //         : className || "",
-      //     }
-      //   }}
-      activeStyle={headerLaptopNavigationItemIsActiveStyle}
-      partiallyActive
-      {...props}
-    />
-  )
-}
 
 export const HeaderMobileStyle = styled.div`
   display: none;
@@ -296,10 +257,10 @@ export const HeaderMobileNavigationItemStyle = styled(Link, {
   transition-duration: 0.3s;
   white-space: nowrap;
 
-  ${breakpointDown("sm")} {
-    border: none;
-    padding: 30px 0;
-  }
+  // \${breakpointDown("sm")} {
+  //   // border: none;
+  //   // padding: 30px 0;
+  // }
   ${(props) =>
     props.nonMember &&
     css`

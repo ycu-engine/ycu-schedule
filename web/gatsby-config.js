@@ -6,7 +6,13 @@ const bucketName = `ycu-scheudle-${stage}`
 module.exports = {
   siteMetadata: {
     title: "YCU スケジュール",
+    titleTemplate: `%s | YCU スケジュール`,
+    author: "ycu-engine",
     siteUrl: "https://www.ycu-schedule.com",
+    description: `YCUスケジュールは横浜市立大学の非公式の時間割アプリです。`,
+    url: `https://www.ycu-schedule.com`,
+    image: `/icons/icon-96x96.png`,
+    twitterUsername: `@ycu_engine`,
   },
   plugins: [
     "gatsby-plugin-emotion",
@@ -43,6 +49,14 @@ module.exports = {
       },
       __key: "news",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "md",
+        path: "./src/md/",
+      },
+      __key: "md",
+    },
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-s3`,
@@ -75,6 +89,12 @@ module.exports = {
         emitPluginDocuments: {
           "src/__generated__/gatsby-plugin-documents.graphql": true,
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-brotli",
+      options: {
+        extensions: ["css", "html", "js", "svg"],
       },
     },
   ],

@@ -14,22 +14,15 @@ import {
   HeaderMobileStyle,
   HeaderStyle,
 } from "../atoms/Header"
+import { IconBrand } from "../images/icon_brand"
 
-type HeaderProps =
-  | {
-      isAuthenticated: false
-      isStudent?: undefined
-      isStaff?: undefined
-      openMenu: boolean
-      setOpenMenu: Dispatch<SetStateAction<boolean>>
-    }
-  | {
-      isAuthenticated: true
-      isStudent: boolean
-      isStaff: boolean
-      openMenu: boolean
-      setOpenMenu: Dispatch<SetStateAction<boolean>>
-    }
+type HeaderProps = {
+  isAuthenticated: boolean
+  isStudent?: boolean
+  isStaff?: boolean
+  openMenu: boolean
+  setOpenMenu: Dispatch<SetStateAction<boolean>>
+}
 
 export const Header = ({
   isAuthenticated,
@@ -41,6 +34,7 @@ export const Header = ({
   return (
     <HeaderStyle>
       <HeaderBrandNameStyle to="/">
+        <IconBrand />
         <HeaderBrandNameTextStyle>YCU Schedule</HeaderBrandNameTextStyle>
       </HeaderBrandNameStyle>
 
@@ -64,7 +58,7 @@ export const Header = ({
             <HeaderLaptopNavigationItemStyle to="#">
               🔓 パスワード変更
             </HeaderLaptopNavigationItemStyle>
-            <HeaderLaptopNavigationItemStyle to="#">
+            <HeaderLaptopNavigationItemStyle to="/readme">
               🙏️ 利用上の注意
             </HeaderLaptopNavigationItemStyle>
             {isStaff ? (
@@ -75,7 +69,7 @@ export const Header = ({
           </HeaderLaptopNavigationMemberStyle>
         ) : (
           <HeaderLaptopNavigationNonMemberStyle>
-            <HeaderLaptopNavigationItemStyle to="#">
+            <HeaderLaptopNavigationItemStyle to="/login">
               🔑 ログイン
             </HeaderLaptopNavigationItemStyle>
           </HeaderLaptopNavigationNonMemberStyle>
@@ -110,7 +104,7 @@ export const Header = ({
               <HeaderMobileNavigationItemStyle to="#">
                 🔓 パスワード変更
               </HeaderMobileNavigationItemStyle>
-              <HeaderMobileNavigationItemStyle to="#">
+              <HeaderMobileNavigationItemStyle to="/readme">
                 🙏️ 利用上の注意
               </HeaderMobileNavigationItemStyle>
               {isStaff ? (
@@ -122,7 +116,7 @@ export const Header = ({
           </Fragment>
         ) : (
           <HeaderMobileNavigationNonMemberStyle>
-            <HeaderMobileNavigationItemStyle to="#" nonMember>
+            <HeaderMobileNavigationItemStyle to="/login" nonMember>
               🔑 ログイン
             </HeaderMobileNavigationItemStyle>
           </HeaderMobileNavigationNonMemberStyle>

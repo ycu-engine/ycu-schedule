@@ -5,22 +5,27 @@ import { Link } from "gatsby"
 import { FC } from "react"
 import {
   EmphasisStyle,
-  LinkStyleCSS,
+  LinkCSS,
   ParagraphStyle,
-  ShortLinkStyleCSS,
+  ShortLinkCSS,
+  StrongStyle,
 } from "../atoms/Typography"
 
-export const Paragraph: FC = ({ children }) => {
-  return <ParagraphStyle>{children}</ParagraphStyle>
-}
+export const Paragraph: FC = ({ children }) => (
+  <ParagraphStyle>{children}</ParagraphStyle>
+)
 
-export const Emphasis: FC = ({ children }) => {
-  return <EmphasisStyle>{children}</EmphasisStyle>
-}
+export const Emphasis: FC = ({ children }) => (
+  <EmphasisStyle>{children}</EmphasisStyle>
+)
+
+export const Strong: FC = ({ children }) => (
+  <StrongStyle>{children}</StrongStyle>
+)
 
 export const InnerLink = styled(Link, { shouldForwardProp: isPropValid })<{
   short?: true
-}>((props) => [LinkStyleCSS, props.short && ShortLinkStyleCSS])
+}>((props) => [LinkCSS, props.short && ShortLinkCSS])
 
 export const OuterLink = styled(
   (props: PropsOf<"a">) => <a target="_blank" {...props} />,
@@ -29,4 +34,4 @@ export const OuterLink = styled(
   }
 )<{
   short?: true
-}>((props) => [LinkStyleCSS, props.short && ShortLinkStyleCSS])
+}>((props) => [LinkCSS, props.short && ShortLinkCSS])

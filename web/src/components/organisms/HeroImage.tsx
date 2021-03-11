@@ -1,5 +1,13 @@
+import { useIsAuthenticated } from "@azure/msal-react"
 import { HeroImage as HeroImageMolecule } from "../molecules/HeroImage"
 
 export const HeroImage = (): JSX.Element => {
-  return <HeroImageMolecule isAuthenticated={false} />
+  const isAuthenticated = useIsAuthenticated()
+  return (
+    <HeroImageMolecule
+      isAuthenticated={isAuthenticated}
+      isStudent={false}
+      isGroup={false}
+    />
+  )
 }
