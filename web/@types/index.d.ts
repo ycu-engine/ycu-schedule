@@ -8,4 +8,5 @@ declare module "~/info" {
   export const ServerlessDeploymentBucketName: string
   export const CoursesLambdaFunctionQualifiedArn: string
   export const CoursesByCodeLambdaFunctionQualifiedArn: string
+  export const CloudFrontDistributionDomainName: string
 }
