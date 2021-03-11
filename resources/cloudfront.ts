@@ -141,6 +141,10 @@ const cloudfront: Serverless = {
       Description: "CloudFront distribution id",
       Value: { Ref: "cloudfront" },
     },
+    CloudFrontDistributionDomainName: {
+      Description: "CloudFront distribution domain name",
+      Value: { "Fn::GetAtt": ["cloudfront", "DomainName"] },
+    },
   },
 }
 
