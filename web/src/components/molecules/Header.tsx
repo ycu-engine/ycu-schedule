@@ -16,21 +16,13 @@ import {
 } from "../atoms/Header"
 import { IconBrand } from "../images/icon_brand"
 
-type HeaderProps =
-  | {
-      isAuthenticated: false
-      isStudent?: undefined
-      isStaff?: undefined
-      openMenu: boolean
-      setOpenMenu: Dispatch<SetStateAction<boolean>>
-    }
-  | {
-      isAuthenticated: true
-      isStudent: boolean
-      isStaff: boolean
-      openMenu: boolean
-      setOpenMenu: Dispatch<SetStateAction<boolean>>
-    }
+type HeaderProps = {
+  isAuthenticated: boolean
+  isStudent?: boolean
+  isStaff?: boolean
+  openMenu: boolean
+  setOpenMenu: Dispatch<SetStateAction<boolean>>
+}
 
 export const Header = ({
   isAuthenticated,
@@ -77,7 +69,7 @@ export const Header = ({
           </HeaderLaptopNavigationMemberStyle>
         ) : (
           <HeaderLaptopNavigationNonMemberStyle>
-            <HeaderLaptopNavigationItemStyle to="#">
+            <HeaderLaptopNavigationItemStyle to="/login">
               🔑 ログイン
             </HeaderLaptopNavigationItemStyle>
           </HeaderLaptopNavigationNonMemberStyle>
@@ -124,7 +116,7 @@ export const Header = ({
           </Fragment>
         ) : (
           <HeaderMobileNavigationNonMemberStyle>
-            <HeaderMobileNavigationItemStyle to="#" nonMember>
+            <HeaderMobileNavigationItemStyle to="/login" nonMember>
               🔑 ログイン
             </HeaderMobileNavigationItemStyle>
           </HeaderMobileNavigationNonMemberStyle>

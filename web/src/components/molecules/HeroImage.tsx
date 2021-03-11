@@ -7,17 +7,11 @@ import {
 } from "~/components/atoms/HeroImage"
 import { HeroImage01, HeroImage02 } from "../images/hero-image"
 
-type HeroImageProps =
-  | {
-      isAuthenticated: false
-      isStudent?: undefined
-      isGroup?: undefined
-    }
-  | {
-      isAuthenticated: true
-      isStudent: boolean
-      isGroup: boolean
-    }
+type HeroImageProps = {
+  isAuthenticated: boolean
+  isStudent: boolean
+  isGroup: boolean
+}
 
 export const HeroImage = ({
   isAuthenticated,
@@ -50,7 +44,7 @@ export const HeroImage = ({
             </HeroImageButtonListItemStyle>
           ) : null
         ) : (
-          <HeroImageButtonListItemStyle main to="#">
+          <HeroImageButtonListItemStyle main to="/login">
             新規アカウント作成
           </HeroImageButtonListItemStyle>
         )}

@@ -257,10 +257,10 @@ export const HeaderMobileNavigationItemStyle = styled(Link, {
   transition-duration: 0.3s;
   white-space: nowrap;
 
-  ${breakpointDown("sm")} {
-    border: none;
-    padding: 30px 0;
-  }
+  // \${breakpointDown("sm")} {
+  //   // border: none;
+  //   // padding: 30px 0;
+  // }
   ${(props) =>
     props.nonMember &&
     css`

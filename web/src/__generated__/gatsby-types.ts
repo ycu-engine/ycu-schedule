@@ -2835,21 +2835,6 @@ declare namespace GatsbyTypes {
     }>
   }
 
-  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-
-  type NewsPageQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "excerptAst"> & {
-          readonly parent: Maybe<Pick<File, "name">>
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
-          >
-        }
-      >
-    }
-  }
-
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
 
   type IndexPageQuery = {
@@ -2868,6 +2853,21 @@ declare namespace GatsbyTypes {
     }
   }
 
+  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type NewsPageQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, "id" | "excerptAst"> & {
+          readonly parent: Maybe<Pick<File, "name">>
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+          >
+        }
+      >
+    }
+  }
+
   type ReadmeQueryVariables = Exact<{ [key: string]: never }>
 
   type ReadmeQuery = {
@@ -2880,6 +2880,20 @@ declare namespace GatsbyTypes {
         }
       >
     }>
+  }
+
+  type NewsTemplateQueryVariables = Exact<{
+    id: Scalars["String"]
+  }>
+
+  type NewsTemplateQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+        readonly frontmatter: Maybe<
+          Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        >
+      }
+    >
   }
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -2964,18 +2978,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
-
-  type NewsTemplateQueryVariables = Exact<{
-    id: Scalars["String"]
-  }>
-
-  type NewsTemplateQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-        readonly frontmatter: Maybe<
-          Pick<MarkdownRemarkFrontmatter, "date" | "title">
-        >
-      }
-    >
-  }
 }
