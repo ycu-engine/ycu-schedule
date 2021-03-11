@@ -1,10 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby"
 import { Fragment } from "react"
-import { Helmet } from "react-helmet"
 import { Card } from "~/components/molecules/Card"
 import { Heading2, Heading3 } from "~/components/molecules/Heading"
 import { renderAst } from "~/components/molecules/Markdown"
 import { InnerLink } from "~/components/molecules/Typography"
+import { SEO } from "~/components/organisms/SEO"
 
 type NewsCardProps = {
   news: GatsbyTypes.NewsPageQuery["allMarkdownRemark"]["nodes"][number]
@@ -47,9 +47,7 @@ const NewsPage = (): JSX.Element => {
 
   return (
     <Fragment>
-      <Helmet>
-        <title>お知らせ | YCUスケジュール</title>
-      </Helmet>
+      <SEO title="お知らせ" description="YCUスケジュールからのお知らせです" />
       {data.allMarkdownRemark.nodes.map((news) => (
         <NewsCard key={news.id} news={news} />
       ))}

@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
 import { Fragment, useMemo } from "react"
-import { Helmet } from "react-helmet"
 import { Callout } from "~/components/molecules/Callout"
 import { Card } from "~/components/molecules/Card"
 import { Heading1, Heading2, Heading3 } from "~/components/molecules/Heading"
@@ -12,10 +11,19 @@ import {
   Paragraph,
 } from "~/components/molecules/Typography"
 import { HeroImage } from "~/components/organisms/HeroImage"
+import { SEO } from "~/components/organisms/SEO"
 
 const IndexPage = (): JSX.Element => {
-  const data = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
+  const {
+    site,
+    allMarkdownRemark,
+  } = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
     query IndexPage {
+      site {
+        siteMetadata {
+          description
+        }
+      }
       allMarkdownRemark(
         sort: { fields: frontmatter___date, order: DESC }
         limit: 1
@@ -37,15 +45,13 @@ const IndexPage = (): JSX.Element => {
     }
   `)
 
-  const latestNews = useMemo(() => data.allMarkdownRemark.nodes[0], [
-    data.allMarkdownRemark.nodes,
+  const latestNews = useMemo(() => allMarkdownRemark.nodes[0], [
+    allMarkdownRemark.nodes,
   ])
 
   return (
     <Fragment>
-      <Helmet>
-        <title>YCUスケジュール</title>
-      </Helmet>
+      <SEO title="トップ" description={site?.siteMetadata?.description} />
       <HeroImage />
       <Callout>
         利用いただきありがとうございます！ おかげさまで現在サービス開始6日にして
@@ -60,7 +66,7 @@ const IndexPage = (): JSX.Element => {
         </Paragraph>
         <Paragraph>
           必ず
-          <InnerLink to="#">利用上の注意</InnerLink>
+          <InnerLink to="/readme">利用上の注意</InnerLink>
           を確認してからご利用ください。
         </Paragraph>
         <Paragraph>

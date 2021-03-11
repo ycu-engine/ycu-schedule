@@ -257,7 +257,12 @@ declare namespace GatsbyTypes {
   type SiteSiteMetadata = {
     readonly title: Maybe<Scalars["String"]>
     readonly description: Maybe<Scalars["String"]>
+    readonly titleTemplate: Maybe<Scalars["String"]>
+    readonly author: Maybe<Scalars["String"]>
     readonly siteUrl: Maybe<Scalars["String"]>
+    readonly url: Maybe<Scalars["String"]>
+    readonly image: Maybe<Scalars["String"]>
+    readonly twitterUsername: Maybe<Scalars["String"]>
   }
 
   type SitePage = Node & {
@@ -558,9 +563,17 @@ declare namespace GatsbyTypes {
   type MarkdownRemarkFrontmatter = {
     readonly title: Maybe<Scalars["String"]>
     readonly date: Maybe<Scalars["Date"]>
+    readonly updatedAt: Maybe<Scalars["Date"]>
   }
 
   type MarkdownRemarkFrontmatter_dateArgs = {
+    formatString: Maybe<Scalars["String"]>
+    fromNow: Maybe<Scalars["Boolean"]>
+    difference: Maybe<Scalars["String"]>
+    locale: Maybe<Scalars["String"]>
+  }
+
+  type MarkdownRemarkFrontmatter_updatedAtArgs = {
     formatString: Maybe<Scalars["String"]>
     fromNow: Maybe<Scalars["Boolean"]>
     difference: Maybe<Scalars["String"]>
@@ -1085,6 +1098,7 @@ declare namespace GatsbyTypes {
   type MarkdownRemarkFrontmatterFilterInput = {
     readonly title: Maybe<StringQueryOperatorInput>
     readonly date: Maybe<DateQueryOperatorInput>
+    readonly updatedAt: Maybe<DateQueryOperatorInput>
   }
 
   type MarkdownHeadingFilterListInput = {
@@ -1318,6 +1332,7 @@ declare namespace GatsbyTypes {
     | "childrenMarkdownRemark.id"
     | "childrenMarkdownRemark.frontmatter.title"
     | "childrenMarkdownRemark.frontmatter.date"
+    | "childrenMarkdownRemark.frontmatter.updatedAt"
     | "childrenMarkdownRemark.excerpt"
     | "childrenMarkdownRemark.rawMarkdownBody"
     | "childrenMarkdownRemark.fileAbsolutePath"
@@ -1373,6 +1388,7 @@ declare namespace GatsbyTypes {
     | "childMarkdownRemark.id"
     | "childMarkdownRemark.frontmatter.title"
     | "childMarkdownRemark.frontmatter.date"
+    | "childMarkdownRemark.frontmatter.updatedAt"
     | "childMarkdownRemark.excerpt"
     | "childMarkdownRemark.rawMarkdownBody"
     | "childMarkdownRemark.fileAbsolutePath"
@@ -1776,7 +1792,12 @@ declare namespace GatsbyTypes {
   type SiteSiteMetadataFilterInput = {
     readonly title: Maybe<StringQueryOperatorInput>
     readonly description: Maybe<StringQueryOperatorInput>
+    readonly titleTemplate: Maybe<StringQueryOperatorInput>
+    readonly author: Maybe<StringQueryOperatorInput>
     readonly siteUrl: Maybe<StringQueryOperatorInput>
+    readonly url: Maybe<StringQueryOperatorInput>
+    readonly image: Maybe<StringQueryOperatorInput>
+    readonly twitterUsername: Maybe<StringQueryOperatorInput>
   }
 
   type SiteConnection = {
@@ -1808,7 +1829,12 @@ declare namespace GatsbyTypes {
     | "buildTime"
     | "siteMetadata.title"
     | "siteMetadata.description"
+    | "siteMetadata.titleTemplate"
+    | "siteMetadata.author"
     | "siteMetadata.siteUrl"
+    | "siteMetadata.url"
+    | "siteMetadata.image"
+    | "siteMetadata.twitterUsername"
     | "polyfill"
     | "pathPrefix"
     | "id"
@@ -2255,6 +2281,7 @@ declare namespace GatsbyTypes {
     | "id"
     | "frontmatter.title"
     | "frontmatter.date"
+    | "frontmatter.updatedAt"
     | "excerpt"
     | "rawMarkdownBody"
     | "fileAbsolutePath"
@@ -2793,6 +2820,21 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
+  type SEOQueryVariables = Exact<{ [key: string]: never }>
+
+  type SEOQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, "titleTemplate" | "twitterUsername"> & {
+          defaultTitle: SiteSiteMetadata["title"]
+          defaultDescription: SiteSiteMetadata["description"]
+          siteUrl: SiteSiteMetadata["url"]
+          defaultImage: SiteSiteMetadata["image"]
+        }
+      >
+    }>
+  }
+
   type NewsPageQueryVariables = Exact<{ [key: string]: never }>
 
   type NewsPageQuery = {
@@ -2811,6 +2853,9 @@ declare namespace GatsbyTypes {
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
 
   type IndexPageQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, "description">>
+    }>
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
         Pick<MarkdownRemark, "id" | "htmlAst"> & {
@@ -2823,18 +2868,18 @@ declare namespace GatsbyTypes {
     }
   }
 
-  type NewsTemplateQueryVariables = Exact<{
-    id: Scalars["String"]
-  }>
+  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
 
-  type NewsTemplateQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, "rawMarkdownBody" | "htmlAst" | "html"> & {
-        readonly frontmatter: Maybe<
-          Pick<MarkdownRemarkFrontmatter, "date" | "title">
-        >
-      }
-    >
+  type ReadmeQuery = {
+    readonly file: Maybe<{
+      readonly childMarkdownRemark: Maybe<
+        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
+          >
+        }
+      >
+    }>
   }
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -2919,4 +2964,18 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
+
+  type NewsTemplateQueryVariables = Exact<{
+    id: Scalars["String"]
+  }>
+
+  type NewsTemplateQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+        readonly frontmatter: Maybe<
+          Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        >
+      }
+    >
+  }
 }

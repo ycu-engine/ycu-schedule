@@ -54,7 +54,7 @@ export const HeroImage = ({
             新規アカウント作成
           </HeroImageButtonListItemStyle>
         )}
-        <HeroImageButtonListItemStyle sub to="#">
+        <HeroImageButtonListItemStyle sub to="/readme">
           利用上の注意
         </HeroImageButtonListItemStyle>
       </HeroImageButtonListStyle>

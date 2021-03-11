@@ -3,13 +3,15 @@ import { createElement, FC } from "react"
 import rehypeReact, { ComponentPropsWithoutNode } from "rehype-react"
 import unified from "unified"
 import type { Node } from "unist"
-import { InnerLink, OuterLink, Paragraph } from "./Typography"
+import { urlIsSameSite } from "~/lib/utl"
+import { Heading1, Heading2, Heading3 } from "./Heading"
+import { InnerLink, OuterLink, Paragraph, Strong } from "./Typography"
 
 const A: FC<ComponentPropsWithoutNode> = ({ href, children }) => {
   if (typeof href !== "string") {
     throw Error("href is not string")
   }
-  if (href?.startsWith?.("/")) {
+  if (urlIsSameSite(href)) {
     return <InnerLink to={href} children={children} />
   }
   return <OuterLink href={href} children={children} />
@@ -30,7 +32,11 @@ const Li: FC<ComponentPropsWithoutNode> = (props) => (
 const processor = unified().use(rehypeReact, {
   createElement,
   components: {
+    h1: Heading1,
+    h2: Heading2,
+    h3: Heading3,
     p: Paragraph,
+    strong: Strong,
     a: A,
     li: Li,
   },

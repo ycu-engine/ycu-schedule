@@ -66,7 +66,7 @@ export const Header = ({
             <HeaderLaptopNavigationItemStyle to="#">
               🔓 パスワード変更
             </HeaderLaptopNavigationItemStyle>
-            <HeaderLaptopNavigationItemStyle to="#">
+            <HeaderLaptopNavigationItemStyle to="/readme">
               🙏️ 利用上の注意
             </HeaderLaptopNavigationItemStyle>
             {isStaff ? (
@@ -112,7 +112,7 @@ export const Header = ({
               <HeaderMobileNavigationItemStyle to="#">
                 🔓 パスワード変更
               </HeaderMobileNavigationItemStyle>
-              <HeaderMobileNavigationItemStyle to="#">
+              <HeaderMobileNavigationItemStyle to="/readme">
                 🙏️ 利用上の注意
               </HeaderMobileNavigationItemStyle>
               {isStaff ? (

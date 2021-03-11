@@ -347,7 +347,12 @@ type Site implements Node {
 type SiteSiteMetadata {
   title: String
   description: String
+  titleTemplate: String
+  author: String
   siteUrl: String
+  url: String
+  image: String
+  twitterUsername: String
 }
 
 type SitePage implements Node {
@@ -698,6 +703,19 @@ type MarkdownRemarkFrontmatter {
     # Configures the locale Moment.js will use to format the date.
     locale: String
   ): Date
+  updatedAt(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
 }
 
 type SiteBuildMetadata implements Node {
@@ -995,6 +1013,7 @@ input MarkdownRemarkFilterInput {
 input MarkdownRemarkFrontmatterFilterInput {
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
+  updatedAt: DateQueryOperatorInput
 }
 
 input MarkdownHeadingFilterListInput {
@@ -1218,6 +1237,7 @@ enum FileFieldsEnum {
   childrenMarkdownRemark___id
   childrenMarkdownRemark___frontmatter___title
   childrenMarkdownRemark___frontmatter___date
+  childrenMarkdownRemark___frontmatter___updatedAt
   childrenMarkdownRemark___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMarkdownRemark___rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMarkdownRemark___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1273,6 +1293,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___id
   childMarkdownRemark___frontmatter___title
   childMarkdownRemark___frontmatter___date
+  childMarkdownRemark___frontmatter___updatedAt
   childMarkdownRemark___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1671,7 +1692,12 @@ input DirectorySortInput {
 input SiteSiteMetadataFilterInput {
   title: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  titleTemplate: StringQueryOperatorInput
+  author: StringQueryOperatorInput
   siteUrl: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  image: StringQueryOperatorInput
+  twitterUsername: StringQueryOperatorInput
 }
 
 type SiteConnection {
@@ -1693,7 +1719,12 @@ enum SiteFieldsEnum {
   buildTime
   siteMetadata___title
   siteMetadata___description
+  siteMetadata___titleTemplate
+  siteMetadata___author
   siteMetadata___siteUrl
+  siteMetadata___url
+  siteMetadata___image
+  siteMetadata___twitterUsername
   polyfill
   pathPrefix
   id
@@ -2113,6 +2144,7 @@ enum MarkdownRemarkFieldsEnum {
   id
   frontmatter___title
   frontmatter___date
+  frontmatter___updatedAt
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
