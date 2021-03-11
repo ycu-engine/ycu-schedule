@@ -2854,7 +2854,6 @@ declare namespace GatsbyTypes {
   }
 
   type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-
   type NewsPageQuery = {
     readonly allMarkdownRemark: {
       readonly nodes: ReadonlyArray<
