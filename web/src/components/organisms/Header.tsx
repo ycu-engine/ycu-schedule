@@ -10,7 +10,7 @@ export const Header = (): JSX.Element => {
     <HeaderMolecule
       isAuthenticated={isAuthenticated}
       isStaff={false}
-      isStudent={true}
+      isStudent={false}
       openMenu={openMenu}
       setOpenMenu={setOpenMenu}
     />

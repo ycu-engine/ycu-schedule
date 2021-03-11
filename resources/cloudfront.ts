@@ -73,7 +73,7 @@ const cloudfront: Serverless = {
             OriginRequestPolicyId: {
               Ref: "cloudfrontOriginRequestPolicy",
             },
-            ViewerProtocolPolicy: isProd ? `redirect-to-https` : "allow-all",
+            ViewerProtocolPolicy: `redirect-to-https`,
             TargetOriginId: `custom/${bucketName}.s3-website-${region}.amazonaws.com`,
           },
           Origins: [
