@@ -2868,34 +2868,6 @@ declare namespace GatsbyTypes {
     }
   }
 
-  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
-
-  type ReadmeQuery = {
-    readonly file: Maybe<{
-      readonly childMarkdownRemark: Maybe<
-        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
-          >
-        }
-      >
-    }>
-  }
-
-  type NewsTemplateQueryVariables = Exact<{
-    id: Scalars["String"]
-  }>
-
-  type NewsTemplateQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-        readonly frontmatter: Maybe<
-          Pick<MarkdownRemarkFrontmatter, "date" | "title">
-        >
-      }
-    >
-  }
-
   type GatsbyImageSharpFixedFragment = Pick<
     ImageSharpFixed,
     "base64" | "width" | "height" | "src" | "srcSet"
@@ -2978,4 +2950,32 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
+
+  type NewsTemplateQueryVariables = Exact<{
+    id: Scalars["String"]
+  }>
+
+  type NewsTemplateQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+        readonly frontmatter: Maybe<
+          Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        >
+      }
+    >
+  }
+
+  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
+
+  type ReadmeQuery = {
+    readonly file: Maybe<{
+      readonly childMarkdownRemark: Maybe<
+        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
+          >
+        }
+      >
+    }>
+  }
 }
