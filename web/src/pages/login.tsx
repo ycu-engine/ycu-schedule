@@ -1,87 +1,83 @@
-import { useMsal } from "@azure/msal-react"
-import { Fragment, memo } from "react"
-import { Button, ButtonList } from "~/components/molecules/Button"
+import { Fragment } from "react"
 import { Card } from "~/components/molecules/Card"
 import { Heading1 } from "~/components/molecules/Heading"
 import { InnerLink, Paragraph } from "~/components/molecules/Typography"
 import { SEO } from "~/components/organisms/SEO"
-import { loginRequest } from "~/lib/msal"
-import { useToast } from "~/store/toast"
 
-const LoginPageBody = memo(() => {
-  const { createToast } = useToast()
-  const { instance, accounts, inProgress } = useMsal()
+// const LoginPageBody = memo(() => {
+//   const { createToast } = useToast()
+//   const { instance, accounts, inProgress } = useMsal()
 
-  if (accounts.length > 0) {
-    const account = accounts[0]
-    return (
-      <Fragment>
-        <Card>
-          <Paragraph>
-            {account.username}
-            でログインしています！
-            <br />
-            アカウントが違う場合やログアウトする場合は下のボタンをクリックしてください。
-          </Paragraph>
-        </Card>
-        <ButtonList>
-          <Button as="button" main onClick={() => instance.logout()}>
-            ログアウト
-          </Button>
-        </ButtonList>
-      </Fragment>
-    )
-  } else if (inProgress === "login") {
-    return (
-      <Card>
-        <Paragraph>ただいまログイン処理中です...</Paragraph>
-      </Card>
-    )
-  } else {
-    return (
-      <Fragment>
-        <Card>
-          <Paragraph>
-            会員登録は不要でMicrosoftのアカウントでログインするだけで、すぐに利用を開始することができます。
-            <br />
-            <InnerLink to="/readme">利用上の注意</InnerLink>
-            を確認した上でYCUスケジュールの利用を開始しましょう。
-          </Paragraph>
-        </Card>
-        <ButtonList>
-          <Button
-            as="button"
-            onClick={async () => {
-              try {
-                await instance.loginPopup(loginRequest)
-                createToast({
-                  level: "success",
-                  text: "ログインに成功しました",
-                })
-              } catch (e) {
-                if (e.errorCode === "user_cancelled") {
-                  createToast({
-                    level: "info",
-                    text: "ログインがキャンセルされました",
-                  })
-                } else {
-                  console.dir(e)
-                  createToast({
-                    level: "error",
-                    text: "ログインに失敗しました",
-                  })
-                }
-              }
-            }}
-            main
-          >
-            ログイン
-          </Button>
-        </ButtonList>
-      </Fragment>
-    )
-  }
-})
+//   if (accounts.length > 0) {
+//     const account = accounts[0]
+//     return (
+//       <Fragment>
+//         <Card>
+//           <Paragraph>
+//             {account.username}
+//             でログインしています！
+//             <br />
+//             アカウントが違う場合やログアウトする場合は下のボタンをクリックしてください。
+//           </Paragraph>
+//         </Card>
+//         <ButtonList>
+//           <Button as="button" main onClick={() => instance.logout()}>
+//             ログアウト
+//           </Button>
+//         </ButtonList>
+//       </Fragment>
+//     )
+//   } else if (inProgress === "login") {
+//     return (
+//       <Card>
+//         <Paragraph>ただいまログイン処理中です...</Paragraph>
+//       </Card>
+//     )
+//   } else {
+//     return (
+//       <Fragment>
+//         <Card>
+//           <Paragraph>
+//             会員登録は不要でMicrosoftのアカウントでログインするだけで、すぐに利用を開始することができます。
+//             <br />
+//             <InnerLink to="/readme">利用上の注意</InnerLink>
+//             を確認した上でYCUスケジュールの利用を開始しましょう。
+//           </Paragraph>
+//         </Card>
+//         <ButtonList>
+//           <Button
+//             as="button"
+//             onClick={async () => {
+//               try {
+//                 await instance.loginPopup(loginRequest)
+//                 createToast({
+//                   level: "success",
+//                   text: "ログインに成功しました",
+//                 })
+//               } catch (e) {
+//                 if (e.errorCode === "user_cancelled") {
+//                   createToast({
+//                     level: "info",
+//                     text: "ログインがキャンセルされました",
+//                   })
+//                 } else {
+//                   console.dir(e)
+//                   createToast({
+//                     level: "error",
+//                     text: "ログインに失敗しました",
+//                   })
+//                 }
+//               }
+//             }}
+//             main
+//           >
+//             ログイン
+//           </Button>
+//         </ButtonList>
+//       </Fragment>
+//     )
+//   }
+// })
 
 const LoginPage = (): JSX.Element => {
   return (
@@ -94,8 +90,17 @@ const LoginPage = (): JSX.Element => {
           <br />
           また、 yokohama-cu.ac.jp 以外のアカウントでは利用できません。
         </Paragraph>
+        <Paragraph>
+          YCUスケジュールは現在サービスを停止しています。
+          <br />
+          詳しくは、
+          <InnerLink to="/news/2021-03-24_shutdown">
+            サービス停止について
+          </InnerLink>
+          をご覧ください。
+        </Paragraph>
       </Card>
-      <LoginPageBody />
+      {/* <LoginPageBody /> */}
     </Fragment>
   )
 }
