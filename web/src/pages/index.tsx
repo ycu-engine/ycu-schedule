@@ -16,30 +16,29 @@ import { apiBasePath } from "~/lib/api/base"
 
 const IndexPage = (): JSX.Element => {
   console.log(apiBasePath)
-  const {
-    site,
-    allMarkdownRemark,
-  } = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
+  const { site, allFile } = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
     query IndexPage {
       site {
         siteMetadata {
           description
         }
       }
-      allMarkdownRemark(
-        sort: { fields: frontmatter___date, order: DESC }
+      allFile(
+        filter: { sourceInstanceName: { eq: "news" } }
+        sort: {
+          fields: childrenMarkdownRemark___frontmatter___date
+          order: DESC
+        }
         limit: 1
       ) {
         nodes {
           id
-          htmlAst
-          frontmatter {
-            date
-            title
-          }
-          parent {
-            ... on File {
-              name
+          name
+          childMarkdownRemark {
+            htmlAst
+            frontmatter {
+              date
+              title
             }
           }
         }
@@ -47,9 +46,7 @@ const IndexPage = (): JSX.Element => {
     }
   `)
 
-  const latestNews = useMemo(() => allMarkdownRemark.nodes[0], [
-    allMarkdownRemark.nodes,
-  ])
+  const latestNews = useMemo(() => allFile.nodes[0], [allFile.nodes])
 
   return (
     <Fragment>
@@ -80,9 +77,11 @@ const IndexPage = (): JSX.Element => {
 
       <Card>
         <Heading1>📗 お知らせ</Heading1>
-        <Heading2>{latestNews.frontmatter?.title}</Heading2>
-        <Heading3>{latestNews.frontmatter?.date}</Heading3>
-        {renderAst(latestNews.htmlAst)}
+        <Heading2>
+          {latestNews.childMarkdownRemark?.frontmatter?.title}
+        </Heading2>
+        <Heading3>{latestNews.childMarkdownRemark?.frontmatter?.date}</Heading3>
+        {renderAst(latestNews.childMarkdownRemark?.htmlAst)}
         <Paragraph>
           <InnerLink to="/news">以前のお知らせ</InnerLink>
         </Paragraph>

@@ -2820,19 +2820,18 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
-  type SEOQueryVariables = Exact<{ [key: string]: never }>
+  type NewsTemplateQueryVariables = Exact<{
+    id: Scalars["String"]
+  }>
 
-  type SEOQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, "titleTemplate" | "twitterUsername"> & {
-          defaultTitle: SiteSiteMetadata["title"]
-          defaultDescription: SiteSiteMetadata["description"]
-          siteUrl: SiteSiteMetadata["url"]
-          defaultImage: SiteSiteMetadata["image"]
-        }
-      >
-    }>
+  type NewsTemplateQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+        readonly frontmatter: Maybe<
+          Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        >
+      }
+    >
   }
 
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
@@ -2841,30 +2840,33 @@ declare namespace GatsbyTypes {
     readonly site: Maybe<{
       readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, "description">>
     }>
-    readonly allMarkdownRemark: {
+    readonly allFile: {
       readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "htmlAst"> & {
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        Pick<File, "id" | "name"> & {
+          readonly childMarkdownRemark: Maybe<
+            Pick<MarkdownRemark, "htmlAst"> & {
+              readonly frontmatter: Maybe<
+                Pick<MarkdownRemarkFrontmatter, "date" | "title">
+              >
+            }
           >
-          readonly parent: Maybe<Pick<File, "name">>
         }
       >
     }
   }
 
-  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-  type NewsPageQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "excerptAst"> & {
-          readonly parent: Maybe<Pick<File, "name">>
+  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
+
+  type ReadmeQuery = {
+    readonly file: Maybe<{
+      readonly childMarkdownRemark: Maybe<
+        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
           readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
           >
         }
       >
-    }
+    }>
   }
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -2950,31 +2952,33 @@ declare namespace GatsbyTypes {
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
 
-  type NewsTemplateQueryVariables = Exact<{
-    id: Scalars["String"]
-  }>
+  type SEOQueryVariables = Exact<{ [key: string]: never }>
 
-  type NewsTemplateQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-        readonly frontmatter: Maybe<
-          Pick<MarkdownRemarkFrontmatter, "date" | "title">
-        >
-      }
-    >
-  }
-
-  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
-
-  type ReadmeQuery = {
-    readonly file: Maybe<{
-      readonly childMarkdownRemark: Maybe<
-        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
-          >
+  type SEOQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, "titleTemplate" | "twitterUsername"> & {
+          defaultTitle: SiteSiteMetadata["title"]
+          defaultDescription: SiteSiteMetadata["description"]
+          siteUrl: SiteSiteMetadata["url"]
+          defaultImage: SiteSiteMetadata["image"]
         }
       >
     }>
+  }
+
+  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type NewsPageQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, "id" | "excerptAst"> & {
+          readonly parent: Maybe<Pick<File, "name" | "sourceInstanceName">>
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+          >
+        }
+      >
+    }
   }
 }

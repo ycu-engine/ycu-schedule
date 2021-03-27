@@ -33,6 +33,7 @@ const NewsPage = (): JSX.Element => {
           parent {
             ... on File {
               name
+              sourceInstanceName
             }
           }
           excerptAst(pruneLength: 50, truncate: true)
@@ -48,9 +49,11 @@ const NewsPage = (): JSX.Element => {
   return (
     <Fragment>
       <SEO title="お知らせ" description="YCUスケジュールからのお知らせです" />
-      {data.allMarkdownRemark.nodes.map((news) => (
-        <NewsCard key={news.id} news={news} />
-      ))}
+      {data.allMarkdownRemark.nodes
+        .filter((node) => node.parent?.sourceInstanceName === "news")
+        .map((news) => (
+          <NewsCard key={news.id} news={news} />
+        ))}
     </Fragment>
   )
 }
