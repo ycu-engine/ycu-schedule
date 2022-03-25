@@ -46,8 +46,8 @@ jobs:
         run: yarn
 
       - name: Deploy
-        run: yarn deploy--first
-        # run: yarn deploy
+        # run: yarn deploy--first
+        run: yarn deploy
 
       # - name: Notify result to slack
       #   uses: homoluctus/slatify@master
