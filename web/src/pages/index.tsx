@@ -12,10 +12,8 @@ import {
 } from "~/components/molecules/Typography"
 import { HeroImage } from "~/components/organisms/HeroImage"
 import { SEO } from "~/components/organisms/SEO"
-import { apiBasePath } from "~/lib/api/base"
 
 const IndexPage = (): JSX.Element => {
-  console.log(apiBasePath)
   const { site, allFile } = useStaticQuery<GatsbyTypes.IndexPageQuery>(graphql`
     query IndexPage {
       site {

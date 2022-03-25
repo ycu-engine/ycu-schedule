@@ -2820,18 +2820,19 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
-  type NewsTemplateQueryVariables = Exact<{
-    id: Scalars["String"]
-  }>
+  type SEOQueryVariables = Exact<{ [key: string]: never }>
 
-  type NewsTemplateQuery = {
-    readonly markdownRemark: Maybe<
-      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-        readonly frontmatter: Maybe<
-          Pick<MarkdownRemarkFrontmatter, "date" | "title">
-        >
-      }
-    >
+  type SEOQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<
+        Pick<SiteSiteMetadata, "titleTemplate" | "twitterUsername"> & {
+          defaultTitle: SiteSiteMetadata["title"]
+          defaultDescription: SiteSiteMetadata["description"]
+          siteUrl: SiteSiteMetadata["url"]
+          defaultImage: SiteSiteMetadata["image"]
+        }
+      >
+    }>
   }
 
   type IndexPageQueryVariables = Exact<{ [key: string]: never }>
@@ -2855,6 +2856,21 @@ declare namespace GatsbyTypes {
     }
   }
 
+  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type NewsPageQuery = {
+    readonly allMarkdownRemark: {
+      readonly nodes: ReadonlyArray<
+        Pick<MarkdownRemark, "id" | "excerptAst"> & {
+          readonly parent: Maybe<Pick<File, "name" | "sourceInstanceName">>
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "date" | "title">
+          >
+        }
+      >
+    }
+  }
+
   type ReadmeQueryVariables = Exact<{ [key: string]: never }>
 
   type ReadmeQuery = {
@@ -2867,6 +2883,20 @@ declare namespace GatsbyTypes {
         }
       >
     }>
+  }
+
+  type NewsTemplateQueryVariables = Exact<{
+    id: Scalars["String"]
+  }>
+
+  type NewsTemplateQuery = {
+    readonly markdownRemark: Maybe<
+      Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+        readonly frontmatter: Maybe<
+          Pick<MarkdownRemarkFrontmatter, "date" | "title">
+        >
+      }
+    >
   }
 
   type GatsbyImageSharpFixedFragment = Pick<
@@ -2951,34 +2981,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
-
-  type SEOQueryVariables = Exact<{ [key: string]: never }>
-
-  type SEOQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<
-        Pick<SiteSiteMetadata, "titleTemplate" | "twitterUsername"> & {
-          defaultTitle: SiteSiteMetadata["title"]
-          defaultDescription: SiteSiteMetadata["description"]
-          siteUrl: SiteSiteMetadata["url"]
-          defaultImage: SiteSiteMetadata["image"]
-        }
-      >
-    }>
-  }
-
-  type NewsPageQueryVariables = Exact<{ [key: string]: never }>
-
-  type NewsPageQuery = {
-    readonly allMarkdownRemark: {
-      readonly nodes: ReadonlyArray<
-        Pick<MarkdownRemark, "id" | "excerptAst"> & {
-          readonly parent: Maybe<Pick<File, "name" | "sourceInstanceName">>
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "date" | "title">
-          >
-        }
-      >
-    }
-  }
 }
