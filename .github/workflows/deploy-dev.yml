@@ -5,9 +5,6 @@ on:
 
 name: Deploy development to AWS
 
-env:
-  AWS_ROLE_TO_ASSUME: ${ secrets.AWS_ROLE_TO_ASSUME }
-
 permissions:
   id-token: write
   contents: read
@@ -26,7 +23,7 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           aws-region: ap-northeast-1
 
       - uses: actions/cache@v2
