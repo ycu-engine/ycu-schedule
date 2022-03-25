@@ -5,6 +5,13 @@ on:
 
 name: Deploy development to AWS
 
+env:
+  AWS_ROLE_TO_ASSUME: ${ secrets.AWS_ROLE_TO_ASSUME }
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy:
     name: Deploy
@@ -16,6 +23,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
+
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME }}
+          aws-region: ap-northeast-1
 
       - uses: actions/cache@v2
         with:
@@ -38,9 +50,6 @@ jobs:
 
       - name: Deploy
         run: yarn deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       # - name: Notify result to slack
       #   uses: homoluctus/slatify@master
