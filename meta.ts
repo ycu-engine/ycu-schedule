@@ -1,7 +1,6 @@
 export const service = "ycu-schedule"
 export const region = "us-east-1"
 export const stage = "${opt:stage, 'dev'}"
-export const tableName = `${service}-${stage}`
 export const bucketName = `${service}-web-${stage}`
 export const cloudfrontCachePolicy = `${service}`
 export const customDomain = "ycu-schedule.com"
@@ -19,6 +18,5 @@ export const variables = {
   service,
   region,
   stage,
-  tableName,
   bucketName,
 }
