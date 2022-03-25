@@ -33,13 +33,6 @@ const serverlessConfiguration: AWS = {
       webpackConfig: "./webpack.config.js",
       // includeModules: true,
     },
-    "serverless-offline": {
-      httpPort: 4000,
-    },
-    output: {
-      file: "web/src/info.json",
-      hooks: ["after:info:info"],
-    },
   },
   resources: {
     Resources: {
@@ -55,8 +48,6 @@ const serverlessConfiguration: AWS = {
     ...(s3.plugins || []),
     ...(cloudfront.plugins || []),
     "serverless-webpack",
-    "serverless-offline",
-    "@ycu-engine/serverless-stack-output",
   ],
 }
 
