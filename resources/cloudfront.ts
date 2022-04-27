@@ -25,10 +25,7 @@ const kebabCase2TitleCase = (kebab: string): string => {
 }
 
 const cloudfront: Serverless = {
-  plugins: [
-    "serverless-cloudfront-invalidate",
-    // "serverless-cloudfront-lambdaedge-plugin",
-  ],
+  plugins: ["serverless-cloudfront-invalidate"],
   custom: {
     cloudfrontInvalidate: [
       {

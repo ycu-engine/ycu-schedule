@@ -5,3 +5,4 @@ public
 .cache
 .serverless
 yarn-error.log
+.DS_Store
