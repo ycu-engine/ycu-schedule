@@ -2820,6 +2820,41 @@ declare namespace GatsbyTypes {
     readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>
   }
 
+  type IndexPageQueryVariables = Exact<{ [key: string]: never }>
+
+  type IndexPageQuery = {
+    readonly site: Maybe<{
+      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, "description">>
+    }>
+    readonly allFile: {
+      readonly nodes: ReadonlyArray<
+        Pick<File, "id" | "name"> & {
+          readonly childMarkdownRemark: Maybe<
+            Pick<MarkdownRemark, "htmlAst"> & {
+              readonly frontmatter: Maybe<
+                Pick<MarkdownRemarkFrontmatter, "date" | "title">
+              >
+            }
+          >
+        }
+      >
+    }
+  }
+
+  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
+
+  type ReadmeQuery = {
+    readonly file: Maybe<{
+      readonly childMarkdownRemark: Maybe<
+        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
+          readonly frontmatter: Maybe<
+            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
+          >
+        }
+      >
+    }>
+  }
+
   type NewsPageQueryVariables = Exact<{ [key: string]: never }>
 
   type NewsPageQuery = {
@@ -2946,39 +2981,4 @@ declare namespace GatsbyTypes {
     ImageSharpFluid,
     "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
   >
-
-  type IndexPageQueryVariables = Exact<{ [key: string]: never }>
-
-  type IndexPageQuery = {
-    readonly site: Maybe<{
-      readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, "description">>
-    }>
-    readonly allFile: {
-      readonly nodes: ReadonlyArray<
-        Pick<File, "id" | "name"> & {
-          readonly childMarkdownRemark: Maybe<
-            Pick<MarkdownRemark, "htmlAst"> & {
-              readonly frontmatter: Maybe<
-                Pick<MarkdownRemarkFrontmatter, "date" | "title">
-              >
-            }
-          >
-        }
-      >
-    }
-  }
-
-  type ReadmeQueryVariables = Exact<{ [key: string]: never }>
-
-  type ReadmeQuery = {
-    readonly file: Maybe<{
-      readonly childMarkdownRemark: Maybe<
-        Pick<MarkdownRemark, "excerpt" | "htmlAst"> & {
-          readonly frontmatter: Maybe<
-            Pick<MarkdownRemarkFrontmatter, "title" | "updatedAt">
-          >
-        }
-      >
-    }>
-  }
 }
